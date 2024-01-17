@@ -11,39 +11,39 @@ import java.util.List;
 public class Marque {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    String idMarque;
-    String nomMarque;
+    String id_Marque;
+    String nom_Marque;
     String pays;
 
     public Marque() {
     }
 
-    public Marque(String nomMarque) throws Exception {
-        this.setNomMarque(nomMarque);
+    public Marque(String nom_Marque) throws Exception {
+        this.setNomMarque(nom_Marque);
     }
 
-    public Marque(String idMarque, String nomMarque) throws Exception {
-        this.setIdMarque(idMarque);
-        this.setNomMarque(nomMarque);
+    public Marque(String nom_Marque, String pays) throws Exception {
+        this.setNomMarque(nom_Marque);
+        this.setPays(pays);
     }
 
-    public String getIdMarque() {
-        return this.idMarque;
+    public String getId_Marque() {
+        return this.id_Marque;
     }
 
-    public void setIdMarque(String idMarque) {
-        this.idMarque = idMarque;
+    public void setId_Marque(String id_Marque) {
+        this.id_Marque = id_Marque;
     }
 
     public String getNomMarque() {
-        return this.nomMarque;
+        return this.nom_Marque;
     }
 
-    public void setNomMarque(String nomMarque) throws Exception {
-        if (nomMarque == null || nomMarque.equals("")) {
+    public void setNomMarque(String nom_Marque) throws Exception {
+        if (nom_Marque == null || nom_Marque.equals("")) {
             throw new Exception("Les Champs ne doivent pas etre vide(s).");
         }
-        this.nomMarque = nomMarque;
+        this.nom_Marque = nom_Marque;
     }
 
     public String getPays() {
@@ -65,7 +65,7 @@ public class Marque {
 
     public boolean controlExistanceMarqueById(List<Marque> marqueExistant) throws Exception {
         for (Marque marque : marqueExistant) {
-            if (marque.getIdMarque().equalsIgnoreCase(this.getIdMarque())) {
+            if (marque.getId_Marque().equalsIgnoreCase(this.getId_Marque())) {
                 return true;
             }
         }

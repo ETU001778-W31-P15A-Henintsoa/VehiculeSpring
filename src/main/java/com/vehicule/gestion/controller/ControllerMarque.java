@@ -37,11 +37,11 @@ public class ControllerMarque {
             reponse = new ApiResponse("", lesMarques);
         } catch (Exception e) {
             reponse = new ApiResponse(e.getMessage(), null);
+            return ResponseEntity.status(500).body(gson.toJson(reponse));
         }
-        return ResponseEntity.ok(gson.toJson(reponse));
     }
 
-    @Transactional
+    @Transactional(rollbackOn = Exception.class)
     @PostMapping("/marque/{nom_marque}/{pays}")
     public ResponseEntity<String> save(@PathVariable("nom_marque") String nomMarque,
             @PathVariable("pays") String pays) {
@@ -50,10 +50,11 @@ public class ControllerMarque {
             servicemarque.save(marque);
             return ResponseEntity.ok("Marque saved successfully.");
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             reponse = new ApiResponse(e.getMessage(), null);
+            return ResponseEntity.status(500).body(gson.toJson(reponse));
         }
-        return ResponseEntity.ok(gson.toJson(reponse));
+        
     }
 
     @GetMapping("/marque/{id}")

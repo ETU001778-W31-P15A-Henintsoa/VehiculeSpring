@@ -64,10 +64,17 @@ public class ControllerMarque {
         return marque;
     }
 
-    @GetMapping("/marques/{id_marque}")
-    public Optional<Marque> deleteById(@PathVariable("id_marque") String id_marque) {
-        servicemarque.deleteById(id_marque);
-        return marque;
+    @Transactional(rollbackOn = Exception.class)
+    @PostMapping("/marque/{id_marque}")
+    public ResponseEntity<String> deleteById(@PathVariable("id_marque") String id_marque) {
+        try {
+            servicemarque.deleteById(id_marque);
+            return ResponseEntity.ok("Marque id = " + id_marque + " deleted successfully.");
+        } catch (Exception e) {
+            // e.printStackTrace();
+            reponse = new ApiResponse(e.getMessage(), null);
+            return ResponseEntity.status(500).body(gson.toJson(reponse));
+        }
     }
 
 }

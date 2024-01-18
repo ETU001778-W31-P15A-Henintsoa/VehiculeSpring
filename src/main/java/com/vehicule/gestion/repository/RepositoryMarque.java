@@ -1,7 +1,6 @@
 package com.vehicule.gestion.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-// import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,5 +14,5 @@ public interface RepositoryMarque extends JpaRepository<Marque, Long> {
 
     Optional<Marque> findById(String id_Marque);
 
-    Optional<Marque> deleteById(String id);
+    void deleteById(String id);
 }

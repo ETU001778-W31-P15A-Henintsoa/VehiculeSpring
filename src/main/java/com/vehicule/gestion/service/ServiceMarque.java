@@ -22,8 +22,8 @@ public class ServiceMarque {
         return repositoryMarque.save(marque);
     }
 
-    public Optional<Marque> findById(String idmarque) {
-        return repositoryMarque.findById(idmarque);
+    public Optional<Marque> findById(String id_marque) {
+        return repositoryMarque.findById(id_marque);
     }
 
     public void deleteById(String idmarque) {

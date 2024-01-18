@@ -58,9 +58,15 @@ public class ControllerMarque {
 
     }
 
-    @GetMapping("/marques/{id}")
-    public Optional<Marque> findById(@PathVariable("id") String id) {
-        Optional<Marque> marque = servicemarque.findById(id);
+    @GetMapping("/marques/{id_marque}")
+    public Optional<Marque> findById(@PathVariable("id_marque") String id_marque) {
+        Optional<Marque> marque = servicemarque.findById(id_marque);
+        return marque;
+    }
+
+    @GetMapping("/marques/{id_marque}")
+    public Optional<Marque> deleteById(@PathVariable("id_marque") String id_marque) {
+        servicemarque.deleteById(id_marque);
         return marque;
     }
 

@@ -1,5 +1,6 @@
 package com.vehicule.gestion.modele;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,9 +10,10 @@ import java.util.List;
 
 @Entity
 public class Marque {
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    String id_Marque;
+    @Id
+    @Column(name = "id_Marque")
+    String id;
     String nom_Marque;
     String pays;
 
@@ -28,11 +30,11 @@ public class Marque {
     }
 
     public String getId_Marque() {
-        return this.id_Marque;
+        return this.id;
     }
 
-    public void setId_Marque(String id_Marque) {
-        this.id_Marque = id_Marque;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNomMarque() {

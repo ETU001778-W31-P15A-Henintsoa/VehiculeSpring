@@ -12,7 +12,7 @@ import com.vehicule.gestion.modele.Marque;
 public interface RepositoryMarque extends JpaRepository<Marque, Long> {
     List<Marque> findAll();
     
-    Optional<Marque> findById(String id);
+    Optional<Marque> findById(String idmarque);
 
-    Optional<Marque> deleteById(String id);
+    Optional<Marque> deleteById(String idmarque);
 }

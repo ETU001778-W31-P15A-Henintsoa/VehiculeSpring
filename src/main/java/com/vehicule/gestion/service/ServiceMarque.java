@@ -22,12 +22,12 @@ public class ServiceMarque {
         return repositoryMarque.save(marque);
     }
 
-    public Optional<Marque> findById(int id) {
-        return repositoryMarque.findById((long) id);
+    public Optional<Marque> findById(String id) {
+        return repositoryMarque.findById(id);
     }
 
-    public void deleteById(int id) {
-        repositoryMarque.deleteById((long) id);
+    public void deleteById(String id) {
+        repositoryMarque.deleteById(id);
     }
 
     public void controleExistanceId(Marque marque) throws Exception {

@@ -5,12 +5,12 @@ import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 // import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+// import org.springframework.http.ResponseEntity;
 // import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+// import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -35,9 +35,10 @@ public class ControllerMarque {
         try {
             List<Marque> lesMarques = servicemarque.findAll();
             reponse = new ApiResponse("", lesMarques);
+            return ResponseEntity.ok(gson.toJson(reponse));
         } catch (Exception e) {
             reponse = new ApiResponse(e.getMessage(), null);
-            return ResponseEntity.status(500).body(gson.toJson(reponse));
+            return ResponseEntity.status(500).body(e.getMessage());
         }
     }
 
@@ -54,12 +55,13 @@ public class ControllerMarque {
             reponse = new ApiResponse(e.getMessage(), null);
             return ResponseEntity.status(500).body(gson.toJson(reponse));
         }
-        
+
     }
 
-    @GetMapping("/marque/{id}")
-    public Optional<Marque> findById(@PathVariable("id") int id) {
+    @GetMapping("/marques/{id}")
+    public Optional<Marque> findById(@PathVariable("id") String id) {
         Optional<Marque> marque = servicemarque.findById(id);
         return marque;
     }
+
 }

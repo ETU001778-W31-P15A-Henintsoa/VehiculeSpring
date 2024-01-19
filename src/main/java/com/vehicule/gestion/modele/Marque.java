@@ -8,7 +8,10 @@ import jakarta.persistence.Id;
 
 import java.util.List;
 
+import lombok.Data;
+
 @Entity
+@Data
 public class Marque {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

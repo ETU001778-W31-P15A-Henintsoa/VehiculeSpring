@@ -1,7 +1,5 @@
 package com.vehicule.gestion.controller;
 
-import com.google.gson.Gson;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 // import org.springframework.http.HttpStatus;
@@ -9,32 +7,35 @@ import org.springframework.http.ResponseEntity;
 // import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+// import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 // import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+// import java.util.Optional;
 import java.util.Optional;
 
 import jakarta.transaction.Transactional;
 
+import com.google.gson.Gson;
 import com.vehicule.gestion.modele.ApiResponse;
-import com.vehicule.gestion.modele.Marque;
-import com.vehicule.gestion.service.ServiceMarque;
+import com.vehicule.gestion.modele.TypeCarburant;
+import com.vehicule.gestion.service.ServiceTypeCarburant;
 
 @RestController
-public class ControllerMarque {
+public class ControllerTypeCarburant {
 
     @Autowired
-    private ServiceMarque servicemarque;
+    private ServiceTypeCarburant servicetypecarburant;
     private Gson gson = new Gson();
     private ApiResponse reponse;
 
-    @GetMapping("/marques")
+    @GetMapping("/typecarburants")
     public ResponseEntity<String> findAll() {
         try {
-            List<Marque> lesMarques = servicemarque.findAll();
-            reponse = new ApiResponse("", lesMarques);
+            List<TypeCarburant> lestypescarburants = servicetypecarburant.findAll();
+            reponse = new ApiResponse("", lestypescarburants);
             return ResponseEntity.ok(gson.toJson(reponse));
         } catch (Exception e) {
             reponse = new ApiResponse(e.getMessage(), null);
@@ -43,12 +44,11 @@ public class ControllerMarque {
     }
 
     @Transactional(rollbackOn = Exception.class)
-    @PostMapping("/marque/{nom_marque}/{pays}")
-    public ResponseEntity<String> save(@PathVariable("nom_marque") String nomMarque,
-            @PathVariable("pays") String pays) {
+    @PostMapping("/typecarburant/{nomTypeCarburant}")
+    public ResponseEntity<String> save(@PathVariable("nomTypeCarburant") String nomTypeCarburant) {
         try {
-            Marque marque = new Marque(nomMarque, pays);
-            servicemarque.save(marque);
+            TypeCarburant type = new TypeCarburant(nomTypeCarburant);
+            servicetypecarburant.save(type);
             return ResponseEntity.ok("Marque saved successfully.");
         } catch (Exception e) {
             // e.printStackTrace();
@@ -58,11 +58,11 @@ public class ControllerMarque {
 
     }
 
-    @GetMapping("/marques/{id_marque}")
-    public ResponseEntity<String> findById(@PathVariable("id_marque") String id_marque) {
+    @GetMapping("/typecarburants/{id}")
+    public ResponseEntity<String> findById(@PathVariable("id") String id) {
         try {
-            Optional<Marque> lesMarques = servicemarque.findById(id_marque);;
-            reponse = new ApiResponse("", lesMarques);
+            Optional<TypeCarburant> lestypescarburants = servicetypecarburant.findById(id);
+            reponse = new ApiResponse("", lestypescarburants);
             return ResponseEntity.ok(gson.toJson(reponse));
         } catch (Exception e) {
             reponse = new ApiResponse(e.getMessage(), null);
@@ -70,17 +70,16 @@ public class ControllerMarque {
         }
     }
 
-    @Transactional(rollbackOn = Exception.class)
-    @PostMapping("/marque/{id_marque}")
-    public ResponseEntity<String> deleteById(@PathVariable("id_marque") String id_marque) {
-        try {
-            servicemarque.deleteById(id_marque);
-            return ResponseEntity.ok("Marque id = " + id_marque + " deleted successfully.");
-        } catch (Exception e) {
-            // e.printStackTrace();
-            reponse = new ApiResponse(e.getMessage(), null);
-            return ResponseEntity.status(500).body(gson.toJson(reponse));
-        }
-    }
-
+    // @Transactional(rollbackOn = Exception.class)
+    // @PostMapping("/typecarburant/delete/{id}")
+    // public ResponseEntity<String> deleteById(@PathVariable("id") String id) {
+    // try {
+    // servicetypecarburant.deleteById(id);
+    // return ResponseEntity.ok("Marque id = " + id + " deleted successfully.");
+    // } catch (Exception e) {
+    // // e.printStackTrace();
+    // reponse = new ApiResponse(e.getMessage(), null);
+    // return ResponseEntity.status(500).body(gson.toJson(reponse));
+    // }
+    // }
 }

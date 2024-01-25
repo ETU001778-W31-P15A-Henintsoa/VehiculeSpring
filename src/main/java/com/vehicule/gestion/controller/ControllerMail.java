@@ -15,9 +15,6 @@ import java.util.Optional;
 
 import jakarta.transaction.Transactional;
 
-import com.vehicule.gestion.modele.Mail;
-import com.vehicule.gestion.service.ServiceMail;
-
 @RestController
 public class ControllerMail {
 

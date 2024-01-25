@@ -1,192 +1,203 @@
-// package com.vehicule.gestion.modele;
+package com.vehicule.gestion.modele;
 
+import java.sql.Date;
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import com.vehicule.gestion.tools.Role;
 
-// import java.sql.Date;
-// import java.util.Collection;
-// import java.util.List;
-// import java.util.Optional;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-// import org.springframework.security.core.GrantedAuthority;
-// import org.springframework.security.core.authority.SimpleGrantedAuthority;
-// import org.springframework.security.core.userdetails.UserDetails;
+@Entity
+public class Utilisateur implements UserDetails {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idutilisateur")
+    String id;
+    @Column(name = "nomutilisateur")
+    String nomUtilisateur;
+    String prenom;
+    String adresse;
+    String mail;
+    @Column(name = "motdepasse")
+    String motDePasse;
+    int sexe;
+    @Column(name = "datenaissance")
+    Date dateNaissance;
 
-// import com.vehicule.gestion.tools.Role;
+    @Enumerated(EnumType.STRING)
+    Role role;
+    // @JsonIgnore
+    // @OneToMany(mappedBy = "utilisateur")
+    // List<Annonce> annonce;
 
-// import jakarta.persistence.Column;
-// import jakarta.persistence.Entity;
-// import jakarta.persistence.EnumType;
-// import jakarta.persistence.Enumerated;
-// import jakarta.persistence.GeneratedValue;
-// import jakarta.persistence.GenerationType;
-// import jakarta.persistence.Id;
+    // public List<Annonce> getAnnonce() {
+    // return annonce;
+    // }
 
-// @Entity
-// public class Utilisateur implements UserDetails{
-//     @Id
-//     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//     @Column(name="idutilisateur")
-//     String idUtilisateur;
-//     @Column(name="nomutilisateur")
-//     String nomUtilisateur;
-//     String prenom;
-//     String adresse;
-//     String mail;
-//     @Column(name="motdepasse")
-//     String motDePasse;
-//     int sexe;
-//     @Column(name="datenaissance")
-//     Date dateNaissance;
-    
-//     @Enumerated(EnumType.STRING)
-//     Role role;
-//     // @JsonIgnore
-//     // @OneToMany(mappedBy = "utilisateur")
-//     // List<Annonce> annonce;
+    // public void setAnnonce(List<Annonce> annonce) {
+    // this.annonce = annonce;
+    // }
 
-//     // public List<Annonce> getAnnonce() {
-//     //     return annonce;
-//     // }
+    @Override
+    public String toString() {
+        return "Utilisateur [login=" + mail + ", motdepasse=" + motDePasse + "]";
+    }
 
-//     // public void setAnnonce(List<Annonce> annonce) {
-//     //     this.annonce = annonce;
-//     // }
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.name()));
+    }
 
-    
-//   @Override
-//   public String toString() {
-//     return "Utilisateur [login=" + mail + ", motdepasse=" + motDePasse + "]";
-//   }
+    @Override
+    public String getPassword() {
+        return getMotDePasse();
+    }
 
-//   @Override
-//   public Collection<? extends GrantedAuthority> getAuthorities() {
-//     return List.of(new SimpleGrantedAuthority(role.name())) ;
-//   }
+    @Override
+    public String getUsername() {
+        return getMail();
+    }
 
-//   @Override
-//   public String getPassword() {
-//     return getMotDePasse();
-//   }
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
 
-//   @Override
-//   public String getUsername() {
-//     return getMail();
-//   }
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
 
-//   @Override
-//   public boolean isAccountNonExpired() {
-//     return true;
-//   }
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
 
-//   @Override
-//   public boolean isAccountNonLocked() {
-//     return true;
-//   }
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 
-//   @Override
-//   public boolean isCredentialsNonExpired() {
-//     return true;
-//   }
+    public Role getRole() {
+        return role;
+    }
 
-//   @Override
-//   public boolean isEnabled() {
-//     return true;
-//   }
+    public void setRole(Role role) {
+        this.role = role;
+    }
 
+    public String getMotDePasse() {
+        return motDePasse;
+    }
 
-//     public Role getRole() {
-//         return role;
-//     }
+    public void setMotDePasse(String motDePasse) throws Exception {
+        if (motDePasse.equals("") || motDePasse == null) {
+            throw new Exception("Insertion mot de passe obligatoire");
+        }
+        this.motDePasse = motDePasse;
+    }
 
-//     public void setRole(Role role) {
-//         this.role = role;
-//     }
+    public String getAdresse() {
+        return adresse;
+    }
 
-//     public String getMotDePasse() {
-//         return motDePasse;
-//     }
+    public String getMail() {
+        return mail;
+    }
 
-//     public void setMotDePasse(String motDePasse) throws Exception{
-//         if(motDePasse.equals("")|| motDePasse==null){
-//             throw new Exception("Insertion mot de passe obligatoire");
-//         }
-//         this.motDePasse = motDePasse;
-//     }
+    public void setMail(String mail) throws Exception {
+        if (mail.equals("") || mail == null) {
+            throw new Exception("Insertion mail obligatoire");
+        }
+        this.mail = mail;
+    }
 
-//     public String getAdresse() {
-//         return adresse;
-//     }
+    public void setAdresse(String adresse) throws Exception {
+        if (adresse.equals("") || adresse == null) {
+            throw new Exception("Insertion adresse obligatoire");
+        }
+        this.adresse = adresse;
+    }
 
-//     public String getMail() {
-//         return mail;
-//     }
+    public String getNom() {
+        return nomUtilisateur;
+    }
 
-//     public void setMail(String mail) throws Exception{
-//         if(mail.equals("")|| mail==null){
-//             throw new Exception("Insertion mail obligatoire");
-//         }
-//         this.mail = mail;
-//     }
+    public String getPrenom() {
+        return prenom;
+    }
 
-//     public void setAdresse(String adresse)throws Exception {
-//         if(adresse.equals("")|| adresse==null){
-//             throw new Exception("Insertion adresse obligatoire");
-//         }
-//         this.adresse = adresse;
-//     }
+    public void setPrenom(String prenom) throws Exception {
+        if (prenom.equals("") || prenom == null) {
+            throw new Exception("Insertion prenom obligatoire");
+        }
+        this.prenom = prenom;
+    }
 
-//     public String getNom() {
-//         return nomUtilisateur;
-//     }
+    public void setNom(String nom) throws Exception {
+        if (nom.equals("") || nom == null) {
+            throw new Exception("Insertion nom obligatoire");
+        }
+        this.nomUtilisateur = nom;
+    }
 
-//     public String getPrenom() {
-//         return prenom;
-//     }
+    public boolean isNomDuplacated(Optional<Utilisateur> modele) {
+        if (modele.isEmpty()) {
+            return true;
+        }
+        return false;
+    }
 
-//     public void setPrenom(String prenom)throws Exception {
-//         if(prenom.equals("")|| prenom==null){
-//             throw new Exception("Insertion prenom obligatoire");
-//         }
-//         this.prenom = prenom;
-//     }
+    public int getSexe() {
+        return sexe;
+    }
 
-//     public void setNom(String nom) throws Exception{
-//         if(nom.equals("")|| nom==null){
-//             throw new Exception("Insertion nom obligatoire");
-//         }
-//         this.nomUtilisateur = nom;
-//     }
+    public void setSexe(int sexe) {
+        this.sexe = sexe;
+    }
 
-//     public boolean isNomDuplacated(Optional<Utilisateur> modele){
-//         if(modele.isEmpty()){
-//              return true;
-//         }
-//         return false;
-//     }   
+    public void setSexe(String sexe) {
+        this.setSexe(Integer.valueOf(sexe));
+    }
 
-//     public int getSexe() {
-//         return sexe;
-//     }
+    public Date getDateNaissance() {
+        return dateNaissance;
+    }
 
-//     public void setSexe(int sexe) {
-//         this.sexe = sexe;
-//     }
+    public void setDateNaissance(Date dateNaissance) {
+        this.dateNaissance = dateNaissance;
+    }
 
-//     public void setSexe(String sexe) {
-//         this.setSexe(Integer.valueOf(sexe));
-//     }
+    public void setDateNaissance(String dateNaissance) {
+        this.setDateNaissance(Date.valueOf(dateNaissance));
+    }
 
-//     public Date getDateNaissance() {
-//         return dateNaissance;
-//     }
+    public String getId() {
+        return id;
+    }
 
-//     public void setDateNaissance(Date dateNaissance) {
-//         this.dateNaissance = dateNaissance;
-//     }
+    public void setId(String id) {
+        this.id = id;
+    }
 
-//     public void setDateNaissance(String dateNaissance) {
-//         this.setDateNaissance(Date.valueOf(dateNaissance));
-//     }
+    public String getNomUtilisateur() {
+        return nomUtilisateur;
+    }
 
-// }
+    public void setNomUtilisateur(String nomUtilisateur) {
+        this.nomUtilisateur = nomUtilisateur;
+    }
+
+}

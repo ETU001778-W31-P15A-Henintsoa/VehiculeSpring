@@ -2,6 +2,8 @@ package com.vehicule.gestion.modele;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Table;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,22 +12,28 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
+@Table(name="sousmodele")
 public class SousModele {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="idsousmodele")
     String idSousModele;
 
     @ManyToOne
-    @JoinColumn(name = "idModele")
+    @JoinColumn(name = "idmodele")
     Modele modele;
+    @Column(name="nomsous")
     String nomSous;
+    @Column(name="vitessemax")
     float vitesseMax;
     float consommation;
 
     @ManyToOne
-    @JoinColumn(name = "idTypeCarburant")
+    @JoinColumn(name = "idtypecarburant")
     TypeCarburant typeCarburant;
+    @Column(name="estmanuel")
     boolean estManuel;
+    @Column(name="puissancemoteur")
     float puissanceMoteur;
     float batterie;
 

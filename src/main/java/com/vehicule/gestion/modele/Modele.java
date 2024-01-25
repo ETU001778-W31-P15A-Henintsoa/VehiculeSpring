@@ -2,6 +2,7 @@ package com.vehicule.gestion.modele;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,11 +14,13 @@ import jakarta.persistence.ManyToOne;
 public class Modele {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="idmodele")
     String id;
 
     @ManyToOne
-    @JoinColumn(name = "idMarque")
+    @JoinColumn(name = "idmarque")
     Marque marque;
+    @Column(name="nommodele")
     String nomModele;
 
     @ManyToOne

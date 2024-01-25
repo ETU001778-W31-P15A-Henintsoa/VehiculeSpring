@@ -15,10 +15,10 @@ public class ImageAnnonce {
     String idImageAnnonce;
 
     @ManyToOne //ilay betsaka no mandeha ao amin'ilay kely
-    @JoinColumn(name = "IdAnnonce")
+    @JoinColumn(name = "idannonce")
     Annonce annonce;
     @ManyToOne
-    @JoinColumn(name = "idSousModele")
+    @JoinColumn(name = "idsousmodele")
     SousModele sousModele;
     String image;
 

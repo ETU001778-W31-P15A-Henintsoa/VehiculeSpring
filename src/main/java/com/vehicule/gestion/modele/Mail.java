@@ -18,9 +18,11 @@ public class Mail {
     String id;
     @ManyToOne
     // @JoinColumn(name = "idUtilisateurEnvoyeur")
+    @Column(name = "idUtilisateurEnvoyeur")
     Utilisateur idUtilisateurEnvoyeur;
     @ManyToOne
     // @JoinColumn(name = "idUtilisateurReceveur")
+    @Column(name = "idUtilisateurReceveur")
     Utilisateur idUtilisateurReceveur;
 
     public Mail() {
@@ -67,7 +69,7 @@ public class Mail {
 
     public boolean controlExistanceUtilisateurEnvoyeur(List<Utilisateur> utilisateurExistant) throws Exception {
         for (Utilisateur utilisateur : utilisateurExistant) {
-            if (utilisateur.getIdUtilisateur().equalsIgnoreCase(this.getIdUtilisateurEnvoyeur().getIdUtilisateur())) {
+            if (utilisateur.geIdUtilisateur().equalsIgnoreCase(this.getIdUtilisateurEnvoyeur().getIdUtilisateur())) {
                 return true;
             }
         }

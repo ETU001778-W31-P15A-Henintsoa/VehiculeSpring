@@ -38,17 +38,13 @@ public class Utilisateur implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     Role role;
-    // @JsonIgnore
-    // @OneToMany(mappedBy = "utilisateur")
-    // List<Annonce> annonce;
 
-    // public List<Annonce> getAnnonce() {
-    // return annonce;
-    // }
+    public Utilisateur() {
+    }
 
-    // public void setAnnonce(List<Annonce> annonce) {
-    // this.annonce = annonce;
-    // }
+    public Utilisateur(String mail) {
+        this.mail = mail;
+    }
 
     @Override
     public String toString() {

@@ -18,12 +18,29 @@ public class ControllerImage {
     private Gson gson = new Gson();
     private ApiResponse reponse;
 
+    // Uploading image
+    // @PostMapping("/traitementimage/{file}")
+    // public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile
+    // file) throws Exception {
+    // TraitementImage timage = new TraitementImage();
+    // try {
+    // String pathfichier = timage.uploadImage(file);
+    // String test = timage.hebergementImage(pathfichier);
+    // return ResponseEntity.ok("Uploaded " + test + " .");
+    // } catch (Exception e) {
+    // e.printStackTrace();
+    // reponse = new ApiResponse(e.getMessage(), null);
+    // return ResponseEntity.status(500).body(gson.toJson(reponse));
+    // }
+    // }
+
+    // Inmage en base 64
     @PostMapping("/traitementimage/{file}")
     public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file) throws Exception {
         TraitementImage timage = new TraitementImage();
         try {
             String pathfichier = timage.uploadImage(file);
-            String test = timage.hebergementImage(pathfichier);
+            String test = timage.ImageToBase64(file);
             return ResponseEntity.ok("Uploaded " + test + " .");
         } catch (Exception e) {
             e.printStackTrace();

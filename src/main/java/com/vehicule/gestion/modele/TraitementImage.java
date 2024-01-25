@@ -35,11 +35,14 @@ public class TraitementImage {
     public TraitementImage() {
     }
 
-    public String ImageToBase64() throws Exception {
-        File file = new File(this.getUPLOAD_DIRECTORY());
-        byte[] fileContent = FileUtils.readFileToByteArray(file);
-        String encodedString = Base64.getEncoder().encodeToString(fileContent);
-        return encodedString;
+    public String ImageToBase64(MultipartFile fichier) throws Exception {
+        // File file = new File(this.getUPLOAD_DIRECTORY());
+        File file = new File(fichier.getName());
+        
+        return String.valueOf(file.getName());
+        // byte[] fileContent = FileUtils.readFileToByteArray(file);
+        // String encodedString = Base64.getEncoder().encodeToString(fileContent);
+        // return encodedString;
     }
 
     public void Base64ToImage(String encodedString) throws Exception {

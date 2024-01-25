@@ -9,37 +9,34 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
+@Document(collection = "mail")
 public class Mail {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idMail")
-    String id;
-    @ManyToOne
-    // @JoinColumn(name = "idUtilisateurEnvoyeur")
-    @Column(name = "idUtilisateurEnvoyeur")
+    String idMail;
     Utilisateur idUtilisateurEnvoyeur;
-    @ManyToOne
-    // @JoinColumn(name = "idUtilisateurReceveur")
-    @Column(name = "idUtilisateurReceveur")
     Utilisateur idUtilisateurReceveur;
 
     public Mail() {
     }
 
-    public Mail(String idMail, Utilisateur idUtilisateurEnvoyeur, Utilisateur idUtilisateurReceveur) throws Exception {
+    public Mail(Utilisateur idUtilisateurEnvoyeur, Utilisateur idUtilisateurReceveur,
+            List<Utilisateur> listesUtilisateur) throws Exception {
+        this.controlExistanceUtilisateurEnvoyeur(listesUtilisateur, idUtilisateurEnvoyeur);
+        this.controlExistanceUtilisateurReceveur(listesUtilisateur, idUtilisateurReceveur);
         this.setIdMail(idMail);
         this.setIdUtilisateurEnvoyeur(idUtilisateurEnvoyeur);
         this.setIdUtilisateurReceveur(idUtilisateurReceveur);
     }
 
     public String getIdMail() {
-        return this.id;
+        return this.idMail;
     }
 
     public void setIdMail(String idMail) {
-        this.id = idMail;
+        this.idMail = idMail;
     }
 
     public Utilisateur getIdUtilisateurEnvoyeur() {
@@ -58,22 +55,32 @@ public class Mail {
         this.idUtilisateurReceveur = idUtilisateurReceveur;
     }
 
-    public boolean controlExistanceUtilisateurReceveur(List<Utilisateur> utilisateurExistant) throws Exception {
+    public void controlExistanceUtilisateurReceveur(List<Utilisateur> utilisateurExistant, Utilisateur user)
+            throws Exception {
+        boolean existant = false;
         for (Utilisateur utilisateur : utilisateurExistant) {
-            if (utilisateur.getIdUtilisateur().equalsIgnoreCase(this.getIdUtilisateurReceveur().getIdUtilisateur())) {
-                return true;
+            if (utilisateur.getIdUtilisateur()
+                    .equalsIgnoreCase(user.getIdUtilisateur())) {
+                existant = true;
             }
         }
-        return false;
+        if (existant == false) {
+            throw new Exception("Utilisateur Receveur non Existant.");
+        }
     }
 
-    public boolean controlExistanceUtilisateurEnvoyeur(List<Utilisateur> utilisateurExistant) throws Exception {
+    public void controlExistanceUtilisateurEnvoyeur(List<Utilisateur> utilisateurExistant, Utilisateur user)
+            throws Exception {
+        boolean existant = false;
         for (Utilisateur utilisateur : utilisateurExistant) {
-            if (utilisateur.geIdUtilisateur().equalsIgnoreCase(this.getIdUtilisateurEnvoyeur().getIdUtilisateur())) {
-                return true;
+            if (utilisateur.getIdUtilisateur().equalsIgnoreCase(user.getIdUtilisateur())) {
+                existant = true;
             }
         }
-        return false;
+        if (existant == false) {
+            throw new Exception("Utilisateur Envoyer non Existant.");
+        }
+
     }
 
 }

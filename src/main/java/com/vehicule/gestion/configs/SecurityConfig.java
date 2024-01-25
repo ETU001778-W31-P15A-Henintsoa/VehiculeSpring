@@ -37,32 +37,36 @@ public class SecurityConfig {
   private JwtRequestFilter jwtRequestFilter;
 
   @Bean
-  //always public
+  // always public
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     return http
-      .csrf(csrf -> csrf.disable()) // Désactive la protection CSRF
-      .cors(cors -> cors.configurationSource(this.corsConfigurationSource())) // Configure la gestion des CORS
-      .sessionManagement(session ->
-        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Définit la politique de gestion des sessions comme étant sans état
-      )
-      .authorizeHttpRequests(req -> {
-        req
-          .requestMatchers("/initial/**")
-          .permitAll() // Autorise toutes les requêtes correspondant à "/auth/**"
-          .requestMatchers("/error/**")
-          .permitAll() // Autorise toutes les requêtes correspondant à "/error/**"
-                .requestMatchers(HttpMethod.GET, "/test/hello").permitAll()
-
-          .anyRequest()
-          .authenticated(); // Exige une authentification pour toutes les autres requêtes
-      })
-      .authenticationProvider(authenticationProvider)
-      .addFilterBefore(
-        jwtRequestFilter,
-        UsernamePasswordAuthenticationFilter.class
-      ) // Ajoute un filtre personnalisé (JwtRequestFilter) avant le filtre UsernamePasswordAuthenticationFilter
-      .httpBasic(Customizer.withDefaults()) // Utilise l'authentification HTTP de base avec les paramètres par défaut
-      .build();
+        .csrf(csrf -> csrf.disable()) // Désactive la protection CSRF
+        .cors(cors -> cors.configurationSource(this.corsConfigurationSource())) // Configure la gestion des CORS
+        .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Définit la
+                                                                                                     // politique de
+                                                                                                     // gestion des
+                                                                                                     // sessions comme
+                                                                                                     // étant sans état
+        )
+        .authorizeHttpRequests(req -> {
+          req
+              .requestMatchers("/initial/**")
+              .permitAll() // Autorise toutes les requêtes correspondant à "/auth/**"
+              .requestMatchers(HttpMethod.GET, "/greeting")
+              .permitAll()
+              .requestMatchers("/error/**")
+              .permitAll() // Autorise toutes les requêtes correspondant à "/error/**"
+              .requestMatchers(HttpMethod.GET, "/test/hello").permitAll()
+              .anyRequest()
+              .authenticated(); // Exige une authentification pour toutes les autres requêtes
+        })
+        .authenticationProvider(authenticationProvider)
+        .addFilterBefore(
+            jwtRequestFilter,
+            UsernamePasswordAuthenticationFilter.class) // Ajoute un filtre personnalisé (JwtRequestFilter) avant le
+                                                        // filtre UsernamePasswordAuthenticationFilter
+        .httpBasic(Customizer.withDefaults()) // Utilise l'authentification HTTP de base avec les paramètres par défaut
+        .build();
   }
 
   @Bean
@@ -70,11 +74,9 @@ public class SecurityConfig {
     CorsConfiguration configuration = new CorsConfiguration();
     configuration.setAllowedOrigins(Arrays.asList("*")); // Autorise toutes les origines
     configuration.setAllowedMethods(
-      Arrays.asList("GET", "POST", "PUT", "DELETE")
-    ); // Autorise les méthodes HTTP spécifiées
+        Arrays.asList("GET", "POST", "PUT", "DELETE")); // Autorise les méthodes HTTP spécifiées
     configuration.setAllowedHeaders(
-      Arrays.asList("authorization", "content-type", "x-auth-token")
-    ); // Autorise les en-têtes spécifiés
+        Arrays.asList("authorization", "content-type", "x-auth-token")); // Autorise les en-têtes spécifiés
     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
     source.registerCorsConfiguration("/**", configuration); // Enregistre la configuration CORS pour toutes les URL
     return source; // Retourne la source de configuration CORS

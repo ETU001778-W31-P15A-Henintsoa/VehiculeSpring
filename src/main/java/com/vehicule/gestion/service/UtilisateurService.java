@@ -1,5 +1,6 @@
 package com.vehicule.gestion.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.vehicule.gestion.modele.Utilisateur;
@@ -15,7 +16,6 @@ public class UtilisateurService {
     private UtilisateurRepository utilisateurRepository;
 
     public Optional<Utilisateur> findByNameAndPassword(Utilisateur utilisateur) {
-        // System.out.println("tafididtra");
 
         Optional<Utilisateur> user = utilisateurRepository.findByMailAndMotDePasse(
                 utilisateur.getMail(),
@@ -27,11 +27,17 @@ public class UtilisateurService {
         return user;
     }
 
-    public Optional<Utilisateur> findByMail(String mail) {
-        System.out.println("tafididtra");
+    public List<Utilisateur> getAll() {
+        return utilisateurRepository.findAll();
+    }
 
+    public Optional<Utilisateur> findByMail(String mail) {
         Optional<Utilisateur> user = utilisateurRepository.findByMail(mail);
-        System.out.println(user);
+        return user;
+    }
+
+    public Optional<Utilisateur> findById(String id) {
+        Optional<Utilisateur> user = utilisateurRepository.findById(id);
         return user;
     }
 }

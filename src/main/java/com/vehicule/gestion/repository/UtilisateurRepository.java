@@ -7,13 +7,11 @@
 
 // @Repository
 // public interface UtilisateurRepository
-//   extends JpaRepository<Utilisateur, String> {
-//   Optional<Utilisateur> findByMailAndMotDePasse(
-//     String login,
-//     String motdepasse
-//   );
-//   Optional<Utilisateur> findByMail(String login);
-
-
+// extends JpaRepository<Utilisateur, String> {
+// Optional<Utilisateur> findByMailAndMotDePasse(
+// String login,
+// String motdepasse
+// );
+// Optional<Utilisateur> findByMail(String login);
 
 // }

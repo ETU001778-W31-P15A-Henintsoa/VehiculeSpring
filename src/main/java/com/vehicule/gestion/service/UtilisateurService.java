@@ -8,33 +8,31 @@
 // import org.springframework.beans.factory.annotation.Autowired;
 // import org.springframework.stereotype.Service;
 
-
 // @Service
 // public class UtilisateurService {
 
-//   @Autowired
-//   private UtilisateurRepository utilisateurRepository;
+// @Autowired
+// private UtilisateurRepository utilisateurRepository;
 
-//   public Optional<Utilisateur> findByNameAndPassword(Utilisateur utilisateur) {
-//     System.out.println("tafididtra");
+// public Optional<Utilisateur> findByNameAndPassword(Utilisateur utilisateur) {
+// System.out.println("tafididtra");
 
-//     Optional<Utilisateur> user = utilisateurRepository.findByMailAndMotDePasse(
-//       utilisateur.getMail(),
-//       utilisateur.getMotDePasse()
-//     );
-//     System.out.println(user);
-//     if (user.isPresent()) {
-//       System.out.println(user.get());
-//     }
-//     return user;
-//   }
+// Optional<Utilisateur> user = utilisateurRepository.findByMailAndMotDePasse(
+// utilisateur.getMail(),
+// utilisateur.getMotDePasse()
+// );
+// System.out.println(user);
+// if (user.isPresent()) {
+// System.out.println(user.get());
+// }
+// return user;
+// }
 
-  
-//   public Optional<Utilisateur> findByMail(String mail) {
-//     System.out.println("tafididtra");
+// public Optional<Utilisateur> findByMail(String mail) {
+// System.out.println("tafididtra");
 
-//     Optional<Utilisateur> user = utilisateurRepository.findByMail(mail);
-//     System.out.println(user);
-//     return user;
-//   }
+// Optional<Utilisateur> user = utilisateurRepository.findByMail(mail);
+// System.out.println(user);
+// return user;
+// }
 // }

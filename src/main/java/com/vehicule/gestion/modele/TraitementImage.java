@@ -17,12 +17,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Base64;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.ContentType;
-import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.apache.http.impl.client.HttpClients;
+// import org.apache.http.HttpResponse;
+// import org.apache.http.client.HttpClient;
+// import org.apache.http.client.methods.HttpPost;
+// import org.apache.http.entity.ContentType;
+// import org.apache.http.entity.mime.MultipartEntityBuilder;
+// import org.apache.http.impl.client.HttpClients;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -50,25 +50,22 @@ public class TraitementImage {
 
     public String hebergementImage(String pathfichier) throws Exception {
         File file = new File(pathfichier);
-        this.tuto(file);
+        // this.tuto(file);
         return String.valueOf(file.exists());
     }
 
-    public void tuto(File fileToUpload) throws Exception {
-        HttpClient httpClient = HttpClients.createDefault();
-
-        HttpPost httpPost = new HttpPost(uploadUrl);
-
-        MultipartEntityBuilder builder = MultipartEntityBuilder.create();
-        builder.addBinaryBody("file", file, ContentType.APPLICATION_OCTET_STREAM, file.getName());
-
-        httpPost.setEntity(builder.build());
-
-        HttpResponse response = httpClient.execute(httpPost);
-
-        // Handle the response as needed
-        System.out.println("Response Code: " + response.getStatusLine().getStatusCode());
-    }
+    // public void tuto(File fileToUpload) throws Exception {
+    // HttpClient httpClient = HttpClients.createDefault();
+    // HttpPost httpPost = new HttpPost(uploadUrl);
+    // MultipartEntityBuilder builder = MultipartEntityBuilder.create();
+    // builder.addBinaryBody("file", file, ContentType.APPLICATION_OCTET_STREAM,
+    // file.getName());
+    // httpPost.setEntity(builder.build());
+    // HttpResponse response = httpClient.execute(httpPost);
+    // // Handle the response as needed
+    // System.out.println("Response Code: " +
+    // response.getStatusLine().getStatusCode());
+    // }
 
     public String uploadImage(MultipartFile fichier) throws Exception {
         StringBuilder fileNames = new StringBuilder();

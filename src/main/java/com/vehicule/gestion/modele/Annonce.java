@@ -18,7 +18,7 @@ public class Annonce {
 
     @ManyToOne
     @JoinColumn(name = "idUtilisateur")
-  //  Utilisateur utilisateur;
+    Utilisateur utilisateur;
 
     @OneToOne
     @JoinColumn(name = "idSousModele")

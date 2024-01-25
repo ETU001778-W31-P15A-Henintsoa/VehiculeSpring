@@ -7,8 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+// import jakarta.persistence.JoinColumn;
+// import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Mail {
@@ -16,11 +16,11 @@ public class Mail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idMail")
     String id;
-    @ManyToOne
+    // @ManyToOne
     // @JoinColumn(name = "idUtilisateurEnvoyeur")
     @Column(name = "idUtilisateurEnvoyeur")
     Utilisateur idUtilisateurEnvoyeur;
-    @ManyToOne
+    // @ManyToOne
     // @JoinColumn(name = "idUtilisateurReceveur")
     @Column(name = "idUtilisateurReceveur")
     Utilisateur idUtilisateurReceveur;

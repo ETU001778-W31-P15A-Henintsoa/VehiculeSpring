@@ -8,13 +8,13 @@ import com.vehicule.gestion.repository.UtilisateurRepository;
 import com.vehicule.gestion.tools.JwtUtil;
 import com.vehicule.gestion.tools.Role;
 
-import java.util.List;
+// import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.User;
+// import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

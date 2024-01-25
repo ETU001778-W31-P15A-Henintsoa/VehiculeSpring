@@ -70,8 +70,6 @@ public class TraitementImage {
         System.out.println("Response Code: " + response.getStatusLine().getStatusCode());
     }
 
-    }
-
     public String uploadImage(MultipartFile fichier) throws Exception {
         StringBuilder fileNames = new StringBuilder();
         Path fileNameAndPath = Paths.get(this.getUPLOAD_DIRECTORY(), fichier.getOriginalFilename());

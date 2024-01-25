@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.google.gson.Gson;
 import com.vehicule.gestion.modele.Annonce;
 import com.vehicule.gestion.modele.ApiResponse;
-import com.vehicule.gestion.modele.Marque;
 import com.vehicule.gestion.service.AnnonceService;
 import jakarta.transaction.Transactional;
 

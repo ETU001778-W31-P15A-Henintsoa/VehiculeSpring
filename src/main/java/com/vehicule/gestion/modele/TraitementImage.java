@@ -17,19 +17,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Base64;
 
-// import org.apache.http.HttpResponse;
-// import org.apache.http.client.HttpClient;
-// import org.apache.http.client.methods.HttpPost;
-// import org.apache.http.entity.ContentType;
-// import org.apache.http.entity.mime.MultipartEntityBuilder;
-// import org.apache.http.impl.client.HttpClients;
-
 import org.apache.commons.io.FileUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 public class TraitementImage {
     static String urlServeurStockage = "https://api.imgbb.com/1/upload";
-    // String cheminLocal;
     static String UPLOAD_DIRECTORY = System.getProperty("user.dir") + "/uploads";
 
     public TraitementImage() {

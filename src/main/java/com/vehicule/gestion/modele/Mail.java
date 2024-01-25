@@ -69,7 +69,7 @@ public class Mail {
 
     public boolean controlExistanceUtilisateurEnvoyeur(List<Utilisateur> utilisateurExistant) throws Exception {
         for (Utilisateur utilisateur : utilisateurExistant) {
-            if (utilisateur.geIdUtilisateur().equalsIgnoreCase(this.getIdUtilisateurEnvoyeur().getIdUtilisateur())) {
+            if (utilisateur.getIdUtilisateur().equalsIgnoreCase(this.getIdUtilisateurEnvoyeur().getIdUtilisateur())) {
                 return true;
             }
         }

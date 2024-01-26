@@ -14,24 +14,24 @@ import jakarta.transaction.Transactional;
 import java.util.List;
 
 @Service
-public class CategorieController {    
-     @Autowired
+public class CategorieController {
+    @Autowired
     private CategorieService entiteService;
 
-    @GetMapping("/categorie")
+    @GetMapping("/categories")
     public List<Categorie> getAll() {
         return entiteService.findAll();
     }
 
-    public List<Categorie> findAllById(Iterable<String> id){
+    public List<Categorie> findAllById(Iterable<String> id) {
         return entiteService.findAllById(id);
     }
-    
+
     @Transactional
     @PostMapping("/categorie")
-    public Categorie save(@RequestBody Categorie c)throws Exception{
-        List<Categorie> categorie=entiteService.findAllByNomCategorie(c.getNomCategorie());
-        if(c.isNomDuplicated(categorie)==false){
+    public Categorie save(@RequestBody Categorie c) throws Exception {
+        List<Categorie> categorie = entiteService.findAllByNomCategorie(c.getNomCategorie());
+        if (c.isNomDuplicated(categorie) == false) {
             return entiteService.save(c);
         }
         throw new Exception("Cette catégorie existe dejà");

@@ -8,6 +8,8 @@ import com.vehicule.gestion.repository.UtilisateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class UtilisateurService {
 
@@ -25,9 +27,15 @@ public class UtilisateurService {
     return user;
   }
 
+  @Transactional
   public Optional<Utilisateur> findByMail(String mail) {
     Optional<Utilisateur> user = utilisateurRepository.findByMail(mail);
-    System.out.println(user);
+    return user;
+  }
+
+  @Transactional
+  public Optional<Utilisateur> findById(String id) {
+    Optional<Utilisateur> user = utilisateurRepository.findById(id);
     return user;
   }
 

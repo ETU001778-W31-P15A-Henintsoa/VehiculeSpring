@@ -25,7 +25,7 @@ public class CategorieController {
     private Gson gson = new Gson();
     private ApiResponse response;
 
-    @GetMapping("/categorie")
+    @GetMapping("/categories")
     public ResponseEntity<String> getAll() {
         try {
             List<Categorie> categories = entiteService.findAll();

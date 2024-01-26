@@ -29,4 +29,9 @@ public class AnnonceService {
         return annonceRepositorie.findAllByEtat(etat);
     }
 
+    public List<Annonce> findByUtilisateurAndEtat(String idUtilisateur,int etat){
+        return annonceRepositorie.findByUtilisateurAndEtat(idUtilisateur, etat);
+    }
+    // public List<Annonce> findAllByU
+
 }

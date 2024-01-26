@@ -17,7 +17,6 @@ import jakarta.transaction.Transactional;
 import java.util.List;
 
 @RestController
-@RequestMapping("/modele")
 public class ModeleController {
     @Autowired
     private ModeleService modeleService;

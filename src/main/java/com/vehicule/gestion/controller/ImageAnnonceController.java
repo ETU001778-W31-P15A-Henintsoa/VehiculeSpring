@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.google.gson.Gson;
 import com.vehicule.gestion.modele.Annonce;
 import com.vehicule.gestion.modele.ApiResponse;
-import com.vehicule.gestion.modele.Categorie;
 import com.vehicule.gestion.modele.ImageAnnonce;
 import com.vehicule.gestion.service.AnnonceService;
 import com.vehicule.gestion.service.ImageAnnonceService;
@@ -21,7 +20,6 @@ import com.vehicule.gestion.service.ImageAnnonceService;
 import jakarta.transaction.Transactional;
 
 @RestController
-@RequestMapping("/annonce")
 public class ImageAnnonceController {
     @Autowired
     private ImageAnnonceService entiteService;

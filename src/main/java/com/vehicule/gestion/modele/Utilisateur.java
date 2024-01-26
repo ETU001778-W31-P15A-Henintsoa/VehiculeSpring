@@ -180,11 +180,11 @@ public class Utilisateur implements UserDetails {
         this.setDateNaissance(Date.valueOf(dateNaissance));
     }
 
-    public String getId() {
+    public String getIdUtilisateur() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setIdUtilisateur(String id) {
         this.id = id;
     }
 

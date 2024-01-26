@@ -19,7 +19,6 @@ import com.vehicule.gestion.service.KitageService;
 import jakarta.transaction.Transactional;
 
 @RestController
-@RequestMapping("/annonce")
 public class KitageController {
 
     @Autowired

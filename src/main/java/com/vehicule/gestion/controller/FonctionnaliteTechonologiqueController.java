@@ -19,7 +19,6 @@ import jakarta.transaction.Transactional;
 import java.util.List;
 
 @RestController
-@RequestMapping("/vehicule")
 public class FonctionnaliteTechonologiqueController {
     @Autowired
     private FonctionnaliteTechnologiqueService entiteService;

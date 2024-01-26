@@ -57,6 +57,7 @@ public class SecurityConfig {
               .requestMatchers("/error/**")
               .permitAll() // Autorise toutes les requêtes correspondant à "/error/**"
               .requestMatchers(HttpMethod.GET, "/test/hello").permitAll()
+              // for testing without security first
               .anyRequest()
               .authenticated(); // Exige une authentification pour toutes les autres requêtes
         })

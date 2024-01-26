@@ -1,4 +1,5 @@
 package com.vehicule.gestion.modele;
+
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
@@ -18,7 +19,7 @@ public class Annonce {
 
     @ManyToOne
     @JoinColumn(name = "idUtilisateur")
-  //  Utilisateur utilisateur;
+    Utilisateur utilisateur;
 
     @OneToOne
     @JoinColumn(name = "idSousModele")
@@ -30,7 +31,6 @@ public class Annonce {
     int etat;
     boolean estVendu;
     boolean estValide;
-
 
     public boolean isEstValide() {
         return estValide;
@@ -62,8 +62,8 @@ public class Annonce {
 
     public void setDateAnnonce(Timestamp dateAnnonce) {
         this.dateAnnonce = dateAnnonce;
-        if(dateAnnonce==null){
-            dateAnnonce=Timestamp.valueOf(LocalDateTime.now());
+        if (dateAnnonce == null) {
+            dateAnnonce = Timestamp.valueOf(LocalDateTime.now());
         }
     }
 
@@ -71,8 +71,8 @@ public class Annonce {
         return prixMinimum;
     }
 
-    public void setPrixMinimum(float prixMinimum) throws Exception{
-        if(prixMinimum<=0){
+    public void setPrixMinimum(float prixMinimum) throws Exception {
+        if (prixMinimum <= 0) {
             throw new Exception("Prix minimum non valide");
         }
         this.prixMinimum = prixMinimum;
@@ -82,8 +82,8 @@ public class Annonce {
         return prix;
     }
 
-    public void setPrix(float prix) throws Exception{
-        if(prix<=0){
+    public void setPrix(float prix) throws Exception {
+        if (prix <= 0) {
             throw new Exception("Prix  non valide");
         }
         this.prix = prix;
@@ -94,7 +94,7 @@ public class Annonce {
     }
 
     public void setCouleur(String couleur) {
-        
+
         this.couleur = couleur;
     }
 
@@ -107,11 +107,11 @@ public class Annonce {
     }
 
     // public Utilisateur getUtilisateur() {
-    //     return utilisateur;
+    // return utilisateur;
     // }
 
     // public void setUtilisateur(Utilisateur utilisateur) {
-    //     this.utilisateur = utilisateur;
+    // this.utilisateur = utilisateur;
     // }
 
     public String getIdAnnonce() {
@@ -123,8 +123,8 @@ public class Annonce {
     }
 
     // public boolean isNomDuplacated(List<SousModele> modele){
-    //     if(modele.size()>0){
-    //          return true;
-    //     }
+    // if(modele.size()>0){
+    // return true;
+    // }
     // }
 }

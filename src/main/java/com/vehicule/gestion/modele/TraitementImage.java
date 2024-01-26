@@ -12,6 +12,16 @@ import java.io.File;
 // import java.net.URLConnection;
 // import java.net.http.HttpClient;
 // import java.net.http.HttpResponse;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.file.Files;
+import java.util.Base64;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -38,9 +48,37 @@ public class TraitementImage {
         return images;
     }
 
-    public String hebergementImage(String pathfichier) throws Exception {
-        File file = new File(pathfichier);
-        return String.valueOf(file.exists());
+    public List<String> hebergementImage(List<String> encodedString) throws Exception {
+        List<byte[]> images = this.Base64ToImage(encodedString);
+        List<String> liensImages = new ArrayList<>();
+
+        String base64Image;
+        String imageDataParam;
+        URI uri;
+
+        HttpClient httpClient = HttpClient.newHttpClient();
+        HttpResponse<String> response;
+        String responseBody;
+        String imageUrl;
+
+        // Create an HTTP request
+        HttpRequest request;
+
+        for (byte[] image : images) {
+            base64Image = Base64.getEncoder().encodeToString(image);
+            imageDataParam = "image=" + base64Image;
+            uri = URI.create(this.getUrlServeurStockage() + "?" + TraitementImage.getApikey() + "&" + imageDataParam);
+            request = HttpRequest.newBuilder()
+                    .uri(uri)
+                    .POST(HttpRequest.BodyPublishers.noBody())
+                    .build();
+            response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+            responseBody = response.body();
+            imageUrl = String.valueOf(responseBody);
+            liensImages.add(imageUrl);
+        }
+
+        return liensImages;
     }
 
     public String uploadImage(MultipartFile fichier) throws Exception {

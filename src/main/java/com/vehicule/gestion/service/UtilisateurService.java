@@ -15,8 +15,6 @@ public class UtilisateurService {
   private UtilisateurRepository utilisateurRepository;
 
   public Optional<Utilisateur> findByNameAndPassword(Utilisateur utilisateur) {
-    System.out.println("tafididtra");
-
     Optional<Utilisateur> user = utilisateurRepository.findByMailAndMotDePasse(
         utilisateur.getMail(),
         utilisateur.getMotDePasse());

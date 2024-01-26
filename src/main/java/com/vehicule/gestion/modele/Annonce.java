@@ -19,8 +19,13 @@ public class Annonce {
     String idAnnonce;
 
     @ManyToOne
+<<<<<<< Updated upstream
+    @JoinColumn(name = "idUtilisateur")
+  //  Utilisateur utilisateur;
+=======
     @JoinColumn(name = "idutilisateur")
     Utilisateur utilisateur;
+>>>>>>> Stashed changes
 
     @OneToOne
     @JoinColumn(name = "idsousmodele")

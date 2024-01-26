@@ -15,7 +15,6 @@ public interface AnnonceRepository extends JpaRepository<Annonce, String> {
 
     List<Annonce> findAllByEtat(int etat);
 
-    List<Annonce> findAllByEstVenduAndEstValide(boolean estVendu,boolean estValide);
 
     // List<Categorie> findAllByNomCategorie(String nomCategorie);
 }

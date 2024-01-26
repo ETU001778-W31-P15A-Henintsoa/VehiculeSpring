@@ -10,7 +10,7 @@ create table Pays(
 create sequence seqMarque;
 create table Marque (
     idMarque varchar(20) default concat('MAR' || nextval('seqMarque')) primary key,
-    nomMarque varchar(30),
+    nomMarque varchar(30) unique,
     Pays varchar(20) references Pays(idPays)
 );
 
@@ -18,14 +18,14 @@ create table Marque (
 create sequence seqCategorie;
 create table Categorie(
     idCategorie varchar(20) default concat('CAT' || nextval('seqCAtegorie')) primary key,
-    nomCategorie varchar(50)
+    nomCategorie varchar(50) unique
 );
 
 -- TypeCarburant (idTypeCarburant, nomTypeCarburant)
 create sequence seqTypeCarburant;
 create table TypeCarburant(
     idTypeCarburant varchar(20) default concat('TYCAR' || nextval('seqTypeCarburant')) primary key,
-    nomTypeCarburant varchar(50)
+    nomTypeCarburant varchar(50) unique
 );
 
 -- FonctionnaliteTechnologique (idFonctionnaliteTechnologique, nomFonctionnaliteTechnologique)

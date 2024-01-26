@@ -37,7 +37,7 @@ public class FonctionnaliteTechnologique {
 
     public void setNomFonctionnaliteTechonologique(String nomFonctionnaliteTechonologique)throws Exception {
         if(nomFonctionnaliteTechonologique.equals("") || nomFonctionnaliteTechonologique==null){
-            throw new Exception("Inséerez le nom de la fonctionnalite technologique");
+            throw new Exception("Insérez le nom de la fonctionnalite technologique");
         }
         this.nomFonctionnaliteTechonologique = nomFonctionnaliteTechonologique;
     }

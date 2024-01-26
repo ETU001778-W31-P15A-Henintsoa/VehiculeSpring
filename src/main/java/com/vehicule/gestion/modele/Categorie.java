@@ -2,6 +2,7 @@ package com.vehicule.gestion.modele;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
@@ -11,7 +12,9 @@ import jakarta.persistence.GenerationType;
 public class Categorie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="idcategorie")
     String id;
+    @Column(name="nomcategorie")
     String nomCategorie;
 
     

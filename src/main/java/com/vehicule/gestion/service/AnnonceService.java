@@ -29,7 +29,4 @@ public class AnnonceService {
         return annonceRepositorie.findAllByEtat(etat);
     }
 
-    public List<Annonce> findAllByEstVenduAndEstValide(boolean estVendu,boolean estValide){
-        return annonceRepositorie.findAllByEstVenduAndEstValide(estVendu,estValide);
-    }
 }

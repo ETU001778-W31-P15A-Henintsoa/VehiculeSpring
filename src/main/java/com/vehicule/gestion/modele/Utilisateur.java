@@ -1,5 +1,15 @@
 // package com.vehicule.gestion.modele;
 
+<<<<<<< Updated upstream
+=======
+
+
+
+import java.sql.Date;
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
+>>>>>>> Stashed changes
 
 
 
@@ -8,6 +18,7 @@
 // import java.util.List;
 // import java.util.Optional;
 
+<<<<<<< Updated upstream
 // import org.springframework.security.core.GrantedAuthority;
 // import org.springframework.security.core.authority.SimpleGrantedAuthority;
 // import org.springframework.security.core.userdetails.UserDetails;
@@ -88,6 +99,80 @@
 //   public boolean isCredentialsNonExpired() {
 //     return true;
 //   }
+=======
+@Entity
+public class Utilisateur implements UserDetails{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="idutilisateur")
+    String idUtilisateur;
+    @Column(name="nomutilisateur")
+    String nomUtilisateur;
+    String prenom;
+    String adresse;
+    String mail;
+    @Column(name="motdepasse")
+    String motDePasse;
+    int sexe;
+    @Column(name="datenaissance")
+    Date dateNaissance;
+    
+    @Enumerated(EnumType.STRING)
+    Role role;
+    // @JsonIgnore
+    // @OneToMany(mappedBy = "utilisateur")
+    // List<Annonce> annonce;
+
+    // public List<Annonce> getAnnonce() {
+    //     return annonce;
+    // }
+
+    // public void setAnnonce(List<Annonce> annonce) {
+    //     this.annonce = annonce;
+    // }
+
+    
+  @Override
+  public String toString() {
+    return "Utilisateur [login=" + mail + ", motdepasse=" + motDePasse + "]";
+  }
+
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    return List.of(new SimpleGrantedAuthority(role.name())) ;
+  }
+
+  @Override
+  public String getPassword() {
+    return getMotDePasse();
+  }
+
+  @Override
+  public String getUsername() {
+    return getMail();
+  }
+
+  @Override
+  public boolean isAccountNonExpired() {
+    return true;
+  }
+
+  @Override
+  public boolean isAccountNonLocked() {
+    return true;
+  }
+
+  @Override
+  public boolean isCredentialsNonExpired() {
+    return true;
+  }
+
+  @Override
+  public boolean isEnabled() {
+    return true;
+  }
+
+>>>>>>> Stashed changes
 
 //   @Override
 //   public boolean isEnabled() {
@@ -99,9 +184,18 @@
 //         return role;
 //     }
 
+<<<<<<< Updated upstream
 //     public void setRole(Role role) {
 //         this.role = role;
 //     }
+=======
+    public void setMotDePasse(String motDePasse) throws Exception{
+        if(motDePasse.equals("")|| motDePasse==null){
+            throw new Exception("Insertion mot de passe obligatoire");
+        }
+        this.motDePasse = motDePasse;
+    }
+>>>>>>> Stashed changes
 
 //     public String getMotDePasse() {
 //         return motDePasse;
@@ -114,6 +208,7 @@
 //         this.motDePasse = motDePasse;
 //     }
 
+<<<<<<< Updated upstream
 //     public String getAdresse() {
 //         return adresse;
 //     }
@@ -121,6 +216,21 @@
 //     public String getMail() {
 //         return mail;
 //     }
+=======
+    public void setMail(String mail) throws Exception{
+        if(mail.equals("")|| mail==null){
+            throw new Exception("Insertion mail obligatoire");
+        }
+        this.mail = mail;
+    }
+
+    public void setAdresse(String adresse)throws Exception {
+        if(adresse.equals("")|| adresse==null){
+            throw new Exception("Insertion adresse obligatoire");
+        }
+        this.adresse = adresse;
+    }
+>>>>>>> Stashed changes
 
 //     public void setMail(String mail) throws Exception{
 //         if(mail.equals("")|| mail==null){
@@ -136,6 +246,7 @@
 //         this.adresse = adresse;
 //     }
 
+<<<<<<< Updated upstream
 //     public String getNom() {
 //         return nomUtilisateur;
 //     }
@@ -150,6 +261,28 @@
 //         }
 //         this.prenom = prenom;
 //     }
+=======
+    public void setPrenom(String prenom)throws Exception {
+        if(prenom.equals("")|| prenom==null){
+            throw new Exception("Insertion prenom obligatoire");
+        }
+        this.prenom = prenom;
+    }
+
+    public void setNom(String nom) throws Exception{
+        if(nom.equals("")|| nom==null){
+            throw new Exception("Insertion nom obligatoire");
+        }
+        this.nomUtilisateur = nom;
+    }
+
+    public boolean isNomDuplacated(Optional<Utilisateur> modele){
+        if(modele.isEmpty()){
+             return true;
+        }
+        return false;
+    }   
+>>>>>>> Stashed changes
 
 //     public void setNom(String nom) throws Exception{
 //         if(nom.equals("")|| nom==null){
@@ -177,6 +310,7 @@
 //         this.setSexe(Integer.valueOf(sexe));
 //     }
 
+<<<<<<< Updated upstream
 //     public Date getDateNaissance() {
 //         return dateNaissance;
 //     }
@@ -190,3 +324,10 @@
 //     }
 
 // }
+=======
+    public void setDateNaissance(String dateNaissance) {
+        this.setDateNaissance(Date.valueOf(dateNaissance));
+    }
+
+}
+>>>>>>> Stashed changes

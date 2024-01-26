@@ -2,16 +2,21 @@ package com.vehicule.gestion.modele;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Table;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
+@Table(name="fonctionnalitetechnologique")
 public class FonctionnaliteTechnologique {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="idfonctionnalite")
     String idFonctionnaliteTechonologique;
+    @Column(name="nomfonctionnalitetechnologique")
     String nomFonctionnaliteTechonologique;
 
     public FonctionnaliteTechnologique() {

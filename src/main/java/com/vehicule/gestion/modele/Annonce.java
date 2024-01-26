@@ -2,6 +2,7 @@ package com.vehicule.gestion.modele;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,39 +15,28 @@ import jakarta.persistence.OneToOne;
 public class Annonce {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="idannonce")
     String idAnnonce;
 
     @ManyToOne
+<<<<<<< Updated upstream
     @JoinColumn(name = "idUtilisateur")
   //  Utilisateur utilisateur;
+=======
+    @JoinColumn(name = "idutilisateur")
+    Utilisateur utilisateur;
+>>>>>>> Stashed changes
 
     @OneToOne
-    @JoinColumn(name = "idSousModele")
+    @JoinColumn(name = "idsousmodele")
     SousModele sousModele;
     String couleur;
     float prix;
+    @Column(name="prixminimum")
     float prixMinimum;
+    @Column(name="dateannonce")
     Timestamp dateAnnonce;
     int etat;
-    boolean estVendu;
-    boolean estValide;
-
-
-    public boolean isEstValide() {
-        return estValide;
-    }
-
-    public void setEstValide(boolean estValide) {
-        this.estValide = estValide;
-    }
-
-    public boolean isEstVendu() {
-        return estVendu;
-    }
-
-    public void setEstVendu(boolean estVendu) {
-        this.estVendu = estVendu;
-    }
 
     public int getEtat() {
         return etat;
@@ -106,13 +96,13 @@ public class Annonce {
         this.sousModele = sousModele;
     }
 
-    // public Utilisateur getUtilisateur() {
-    //     return utilisateur;
-    // }
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
 
-    // public void setUtilisateur(Utilisateur utilisateur) {
-    //     this.utilisateur = utilisateur;
-    // }
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+    }
 
     public String getIdAnnonce() {
         return idAnnonce;

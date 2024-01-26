@@ -40,8 +40,8 @@ public class ControllerImage {
         TraitementImage timage = new TraitementImage();
         try {
             String pathfichier = timage.uploadImage(file);
-            String test = timage.ImageToBase64(file);
-            return ResponseEntity.ok("Uploaded " + test + " .");
+            // String test = timage.ImageToBase64(file);
+            return ResponseEntity.ok("Uploaded "  + " .");
         } catch (Exception e) {
             e.printStackTrace();
             reponse = new ApiResponse(e.getMessage(), null);

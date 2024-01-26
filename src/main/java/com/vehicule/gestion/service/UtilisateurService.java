@@ -1,49 +1,12 @@
-// package com.vehicule.gestion.service;
+package com.vehicule.gestion.service;
 
-<<<<<<< Updated upstream
-// import java.util.Optional;
-=======
 import java.util.Optional;
->>>>>>> Stashed changes
 
-// import com.vehicule.gestion.modele.Utilisateur;
-// import com.vehicule.gestion.repository.UtilisateurRepository;
+import com.vehicule.gestion.modele.Utilisateur;
+import com.vehicule.gestion.repository.UtilisateurRepository;
 
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.stereotype.Service;
-
-<<<<<<< Updated upstream
-
-// @Service
-// public class UtilisateurService {
-
-//   @Autowired
-//   private UtilisateurRepository utilisateurRepository;
-
-//   public Optional<Utilisateur> findByNameAndPassword(Utilisateur utilisateur) {
-//     System.out.println("tafididtra");
-
-//     Optional<Utilisateur> user = utilisateurRepository.findByMailAndMotDePasse(
-//       utilisateur.getMail(),
-//       utilisateur.getMotDePasse()
-//     );
-//     System.out.println(user);
-//     if (user.isPresent()) {
-//       System.out.println(user.get());
-//     }
-//     return user;
-//   }
-
-  
-//   public Optional<Utilisateur> findByMail(String mail) {
-//     System.out.println("tafididtra");
-
-//     Optional<Utilisateur> user = utilisateurRepository.findByMail(mail);
-//     System.out.println(user);
-//     return user;
-//   }
-// }
-=======
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class UtilisateurService {
@@ -55,9 +18,8 @@ public class UtilisateurService {
     System.out.println("tafididtra");
 
     Optional<Utilisateur> user = utilisateurRepository.findByMailAndMotDePasse(
-      utilisateur.getMail(),
-      utilisateur.getMotDePasse()
-    );
+        utilisateur.getMail(),
+        utilisateur.getMotDePasse());
     System.out.println(user);
     if (user.isPresent()) {
       System.out.println(user.get());
@@ -65,13 +27,10 @@ public class UtilisateurService {
     return user;
   }
 
-  
   public Optional<Utilisateur> findByMail(String mail) {
-    System.out.println("tafididtra");
-
     Optional<Utilisateur> user = utilisateurRepository.findByMail(mail);
     System.out.println(user);
     return user;
   }
+
 }
->>>>>>> Stashed changes

@@ -1,39 +1,50 @@
 package com.vehicule.gestion.modele;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "mail")
-public class Mail {
+@Document(collection = "message")
+public class Message {
     @Id
-    String idMail;
+    String idMessage;
+    Date dateMessage;
     Utilisateur idUtilisateurEnvoyeur;
     Utilisateur idUtilisateurReceveur;
+    String message;
+    List<String> liensImages;
 
-    public Mail() {
+    public Message(String dateMessage, Utilisateur idUtilisateurEnvoyeur, Utilisateur idUtilisateurReceveur,
+            String message, List<String> liensImages) throws Exception {
+        this.setDateMessage(dateMessage);
+        this.idUtilisateurEnvoyeur = idUtilisateurEnvoyeur;
+        this.idUtilisateurReceveur = idUtilisateurReceveur;
+        this.message = message;
+        this.liensImages = liensImages;
     }
 
-    public Mail(Utilisateur idUtilisateurEnvoyeur, Utilisateur idUtilisateurReceveur,
-            List<Utilisateur> listesUtilisateur) throws Exception {
-        this.controlExistanceUtilisateurEnvoyeur(listesUtilisateur, idUtilisateurEnvoyeur);
-        this.controlExistanceUtilisateurReceveur(listesUtilisateur, idUtilisateurReceveur);
-        this.setIdMail(idMail);
-        this.setIdUtilisateurEnvoyeur(idUtilisateurEnvoyeur);
-        this.setIdUtilisateurReceveur(idUtilisateurReceveur);
+    public String getIdMessage() {
+        return idMessage;
     }
 
-    public String getIdMail() {
-        return this.idMail;
+    public void setIdMessage(String idMessage) {
+        this.idMessage = idMessage;
     }
 
-    public void setIdMail(String idMail) {
-        this.idMail = idMail;
+    public Date getDateMessage() {
+        return dateMessage;
+    }
+
+    public void setDateMessage(String dateMessage) throws Exception {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        this.dateMessage = dateFormat.parse(dateMessage);
     }
 
     public Utilisateur getIdUtilisateurEnvoyeur() {
-        return this.idUtilisateurEnvoyeur;
+        return idUtilisateurEnvoyeur;
     }
 
     public void setIdUtilisateurEnvoyeur(Utilisateur idUtilisateurEnvoyeur) {
@@ -41,11 +52,27 @@ public class Mail {
     }
 
     public Utilisateur getIdUtilisateurReceveur() {
-        return this.idUtilisateurReceveur;
+        return idUtilisateurReceveur;
     }
 
     public void setIdUtilisateurReceveur(Utilisateur idUtilisateurReceveur) {
         this.idUtilisateurReceveur = idUtilisateurReceveur;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public List<String> getLiensImages() {
+        return liensImages;
+    }
+
+    public void setLiensImages(List<String> liensImages) {
+        this.liensImages = liensImages;
     }
 
     public void controlExistanceUtilisateurReceveur(List<Utilisateur> utilisateurExistant, Utilisateur user)
@@ -74,6 +101,10 @@ public class Mail {
             throw new Exception("Utilisateur Envoyer non Existant.");
         }
 
+    }
+
+    public void setDateMessage(Date dateMessage) {
+        this.dateMessage = dateMessage;
     }
 
 }

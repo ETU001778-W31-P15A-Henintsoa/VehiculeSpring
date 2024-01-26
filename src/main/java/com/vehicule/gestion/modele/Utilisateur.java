@@ -1,6 +1,7 @@
 package com.vehicule.gestion.modele;
 
-import java.sql.Date;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -38,6 +39,18 @@ public class Utilisateur implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     Role role;
+
+    public Utilisateur(String nomUtilisateur, String prenom, String adresse, String mail, String motDePasse, int sexe,
+            Date dateNaissance, Role role) throws Exception {
+        this.nomUtilisateur = nomUtilisateur;
+        this.prenom = prenom;
+        this.adresse = adresse;
+        this.mail = mail;
+        this.motDePasse = motDePasse;
+        this.sexe = sexe;
+        this.dateNaissance = dateNaissance;
+        this.role = role;
+    }
 
     public Utilisateur() {
     }
@@ -176,8 +189,9 @@ public class Utilisateur implements UserDetails {
         this.dateNaissance = dateNaissance;
     }
 
-    public void setDateNaissance(String dateNaissance) {
-        this.setDateNaissance(Date.valueOf(dateNaissance));
+    public void setDateNaissance(String dateNaissance) throws Exception {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        this.setDateNaissance(dateFormat.parse(dateNaissance));
     }
 
     public String getIdUtilisateur() {

@@ -8,36 +8,24 @@ import java.util.List;
 import java.util.Optional;
 
 import com.vehicule.gestion.modele.Mail;
+import com.vehicule.gestion.modele.Poussin;
 import com.vehicule.gestion.repository.RepositoryMail;
+import com.vehicule.gestion.repository.RepositoryPoussin;
 
 @Service
 @Transactional
-public class ServiceMail {
+public class ServicePoussin {
 
     @Autowired
-    private RepositoryMail personRepository;
+    private RepositoryPoussin personRepository;
 
     // Create operation
-    public Mail save(Mail mail) {
+    public Poussin save(Poussin mail) {
         return personRepository.save(mail);
     }
 
     // Read operations
-    public List<Mail> getAll() {
+    public List<Poussin> getAll() {
         return personRepository.findAll();
-    }
-
-    public Optional<Mail> findById(String id) {
-        return personRepository.findById(id);
-    }
-
-    // Update operation
-    public Mail update(Mail person) {
-        return personRepository.save(person);
-    }
-
-    // Delete operation
-    public void delete(String id) {
-        personRepository.deleteById(id);
     }
 }

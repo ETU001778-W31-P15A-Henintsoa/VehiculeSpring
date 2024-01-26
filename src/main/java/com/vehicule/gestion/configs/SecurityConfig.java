@@ -52,7 +52,7 @@ public class SecurityConfig {
           req
               .requestMatchers("/initial/**")
               .permitAll() // Autorise toutes les requêtes correspondant à "/auth/**"
-              .requestMatchers(HttpMethod.POST, "/traitementimage/**")
+              .requestMatchers(HttpMethod.GET, "/categories/**")
               .permitAll()
               .requestMatchers("/error/**")
               .permitAll() // Autorise toutes les requêtes correspondant à "/error/**"

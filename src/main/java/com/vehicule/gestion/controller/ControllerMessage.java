@@ -7,38 +7,31 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.http.HttpHeaders;
-
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import com.google.gson.Gson;
-import com.jayway.jsonpath.internal.Path;
 import com.vehicule.gestion.modele.ApiResponse;
-import com.vehicule.gestion.modele.Mail;
 import com.vehicule.gestion.modele.Message;
 import com.vehicule.gestion.modele.Utilisateur;
-import com.vehicule.gestion.service.ServiceMail;
 import com.vehicule.gestion.service.ServiceMessage;
 import com.vehicule.gestion.service.UtilisateurService;
 import com.vehicule.gestion.tools.Role;
 
 @RestController
 // @RequestMapping("/api/people")
-public class ControllerMail {
+public class ControllerMessage {
 
     @Autowired
-    private ServiceMail servicemail;
-    private UtilisateurService utilisateurService;
     private ServiceMessage servicemessage;
+    private UtilisateurService utilisateurService;
     private Gson gson = new Gson();
     private ApiResponse reponse;
 
-    @PostMapping("mail/{idreceveur}/{message}/{files}")
+    // Insertion Message
+    @PostMapping("message/{idreceveur}/{message}/{files}")
     public ResponseEntity<String> save(@PathVariable("idreceveur") String receveur,
             @PathVariable("message") String message, @PathVariable("files") List<MultipartFile> path) {
         try {
@@ -54,27 +47,21 @@ public class ControllerMail {
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-            // Mail essaie = new Mail();
-            // essaie.setIdUtilisateurEnvoyeur(new Utilisateur("HERINJANAHARY", "Lova
-            // Henintsoa", "GVAS 8 Soamanandrariny",
-            // "h.lovahenintsoa@gmail.com", "password", 0, dateFormat.parse("2004-03-04"),
-            // Role.ROLE_USER));
-            // essaie.setIdUtilisateurReceveur(new Utilisateur("Tahinjanahary", "Fiderana",
-            // "Ambohipo",
-            // "fideranatahinjanahary@gmail.com", "motdepasse", 0,
-            // dateFormat.parse("2004-06-14"),
-            // Role.ROLE_USER));
+            Message essaie = new Message();
+            essaie.setDateMessage("2024-01-26T12:34:56");
+            essaie.setIdUtilisateurEnvoyeur(new Utilisateur("HERINJANAHARY", "Lova Henintsoa", "GVAS 8 Soamanandrariny",
+                    "h.lovahenintsoa@gmail.com", "password", 0, dateFormat.parse("2004-03-04"),
+                    Role.ROLE_USER));
+            essaie.setIdUtilisateurReceveur(new Utilisateur("Tahinjanahary", "Fiderana",
+                    "Ambohipo",
+                    "fideranatahinjanahary@gmail.com", "motdepasse", 0,
+                    dateFormat.parse("2004-06-14"),
+                    Role.ROLE_USER));
+            essaie.setMessage("coucou aki ahhh.");
 
-            // servicemail.save(essaie);
+            servicemessage.save(essaie);
 
-            List<Mail> lesMails = servicemail.getAll();
-
-            Message messages = new Message(lesMails.get(lesMails.size() - 1), message,
-                    false, false);
-            servicemessage.save(messages);
-
-            // Boucle Insertion image dans la base de donnee meme que dans le premier
-            // enregistrement de message
+            List<Message> lesMails = servicemessage.findAll();
 
             reponse = new ApiResponse("", lesMails);
 

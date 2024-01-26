@@ -60,7 +60,7 @@ public class ControllerMarque {
         try {
             Optional<Marque> lesMarques = servicemarque.findById(id_marque);
             ;
-            reponse = new ApiResponse("", lesMarques);
+            reponse = new ApiResponse("", lesMarques.get());
             return ResponseEntity.ok(gson.toJson(reponse));
         } catch (Exception e) {
             e.printStackTrace();

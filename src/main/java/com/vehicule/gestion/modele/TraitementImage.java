@@ -15,7 +15,9 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,25 +29,16 @@ public class TraitementImage {
     public TraitementImage() {
     }
 
-    public String ImageToBase64(MultipartFile fichier) throws Exception {
-        // File file = new File(this.getUPLOAD_DIRECTORY());
-        File file = new File(fichier.getName());
-        
-        return String.valueOf(file.getName());
-        // byte[] fileContent = FileUtils.readFileToByteArray(file);
-        // String encodedString = Base64.getEncoder().encodeToString(fileContent);
-        // return encodedString;
-    }
-
-    public void Base64ToImage(String encodedString) throws Exception {
-        byte[] decodedBytes = Base64.getDecoder().decode(encodedString);
-        File file = new File(this.getUPLOAD_DIRECTORY());
-        FileUtils.writeByteArrayToFile(file, decodedBytes);
+    public List<byte[]> Base64ToImage(List<String> encodedString) throws Exception {
+        List<byte[]> images = new ArrayList<>();
+        for (String string : encodedString) {
+            images.add(Base64.getDecoder().decode(string));
+        }
+        return images;
     }
 
     public String hebergementImage(String pathfichier) throws Exception {
         File file = new File(pathfichier);
-        // this.tuto(file);
         return String.valueOf(file.exists());
     }
 

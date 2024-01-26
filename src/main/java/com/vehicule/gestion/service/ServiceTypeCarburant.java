@@ -3,6 +3,8 @@ package com.vehicule.gestion.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jakarta.transaction.Transactional;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +25,7 @@ public class ServiceTypeCarburant {
         return repositorytypecarburant.save(marque);
     }
 
+    @Transactional
     public Optional<TypeCarburant> findById(String id) {
         return repositorytypecarburant.findById(id);
     }

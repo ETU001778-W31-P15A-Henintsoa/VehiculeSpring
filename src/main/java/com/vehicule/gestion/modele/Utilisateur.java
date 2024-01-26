@@ -1,15 +1,13 @@
 // package com.vehicule.gestion.modele;
 
-<<<<<<< Updated upstream
-=======
 
 
 
-import java.sql.Date;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
->>>>>>> Stashed changes
 
 
 
@@ -18,7 +16,6 @@ import java.util.Optional;
 // import java.util.List;
 // import java.util.Optional;
 
-<<<<<<< Updated upstream
 // import org.springframework.security.core.GrantedAuthority;
 // import org.springframework.security.core.authority.SimpleGrantedAuthority;
 // import org.springframework.security.core.userdetails.UserDetails;
@@ -123,9 +120,20 @@ public class Utilisateur implements UserDetails{
     // @OneToMany(mappedBy = "utilisateur")
     // List<Annonce> annonce;
 
-    // public List<Annonce> getAnnonce() {
-    //     return annonce;
-    // }
+    public Utilisateur(String nomUtilisateur, String prenom, String adresse, String mail, String motDePasse, int sexe,
+            Date dateNaissance, Role role) throws Exception {
+        this.nomUtilisateur = nomUtilisateur;
+        this.prenom = prenom;
+        this.adresse = adresse;
+        this.mail = mail;
+        this.motDePasse = motDePasse;
+        this.sexe = sexe;
+        this.dateNaissance = dateNaissance;
+        this.role = role;
+    }
+
+    public Utilisateur() {
+    }
 
     // public void setAnnonce(List<Annonce> annonce) {
     //     this.annonce = annonce;
@@ -184,18 +192,12 @@ public class Utilisateur implements UserDetails{
 //         return role;
 //     }
 
-<<<<<<< Updated upstream
-//     public void setRole(Role role) {
-//         this.role = role;
-//     }
-=======
     public void setMotDePasse(String motDePasse) throws Exception{
         if(motDePasse.equals("")|| motDePasse==null){
             throw new Exception("Insertion mot de passe obligatoire");
         }
         this.motDePasse = motDePasse;
     }
->>>>>>> Stashed changes
 
 //     public String getMotDePasse() {
 //         return motDePasse;
@@ -208,15 +210,6 @@ public class Utilisateur implements UserDetails{
 //         this.motDePasse = motDePasse;
 //     }
 
-<<<<<<< Updated upstream
-//     public String getAdresse() {
-//         return adresse;
-//     }
-
-//     public String getMail() {
-//         return mail;
-//     }
-=======
     public void setMail(String mail) throws Exception{
         if(mail.equals("")|| mail==null){
             throw new Exception("Insertion mail obligatoire");
@@ -230,7 +223,6 @@ public class Utilisateur implements UserDetails{
         }
         this.adresse = adresse;
     }
->>>>>>> Stashed changes
 
 //     public void setMail(String mail) throws Exception{
 //         if(mail.equals("")|| mail==null){
@@ -246,22 +238,6 @@ public class Utilisateur implements UserDetails{
 //         this.adresse = adresse;
 //     }
 
-<<<<<<< Updated upstream
-//     public String getNom() {
-//         return nomUtilisateur;
-//     }
-
-//     public String getPrenom() {
-//         return prenom;
-//     }
-
-//     public void setPrenom(String prenom)throws Exception {
-//         if(prenom.equals("")|| prenom==null){
-//             throw new Exception("Insertion prenom obligatoire");
-//         }
-//         this.prenom = prenom;
-//     }
-=======
     public void setPrenom(String prenom)throws Exception {
         if(prenom.equals("")|| prenom==null){
             throw new Exception("Insertion prenom obligatoire");
@@ -282,52 +258,52 @@ public class Utilisateur implements UserDetails{
         }
         return false;
     }   
->>>>>>> Stashed changes
 
-//     public void setNom(String nom) throws Exception{
-//         if(nom.equals("")|| nom==null){
-//             throw new Exception("Insertion nom obligatoire");
-//         }
-//         this.nomUtilisateur = nom;
-//     }
+    public void setNom(String nom) throws Exception{
+        if(nom.equals("")|| nom==null){
+            throw new Exception("Insertion nom obligatoire");
+        }
+        this.nomUtilisateur = nom;
+    }
 
-//     public boolean isNomDuplacated(Optional<Utilisateur> modele){
-//         if(modele.isEmpty()){
-//              return true;
-//         }
-//         return false;
-//     }   
+    public boolean isNomDuplacated(Optional<Utilisateur> modele){
+        if(modele.isEmpty()){
+             return true;
+        }
+        return false;
+    }   
 
-//     public int getSexe() {
-//         return sexe;
-//     }
+    public int getSexe() {
+        return sexe;
+    }
 
-//     public void setSexe(int sexe) {
-//         this.sexe = sexe;
-//     }
+    public void setSexe(int sexe) {
+        this.sexe = sexe;
+    }
 
-//     public void setSexe(String sexe) {
-//         this.setSexe(Integer.valueOf(sexe));
-//     }
+    public void setSexe(String sexe) {
+        this.setSexe(Integer.valueOf(sexe));
+    }
 
-<<<<<<< Updated upstream
-//     public Date getDateNaissance() {
-//         return dateNaissance;
-//     }
 
-//     public void setDateNaissance(Date dateNaissance) {
-//         this.dateNaissance = dateNaissance;
-//     }
+    public Date getDateNaissance() {
+        return dateNaissance;
+    }
 
-//     public void setDateNaissance(String dateNaissance) {
-//         this.setDateNaissance(Date.valueOf(dateNaissance));
-//     }
+    public void setDateNaissance(Date dateNaissance) {
+        this.dateNaissance = dateNaissance;
+    }
 
-// }
-=======
     public void setDateNaissance(String dateNaissance) {
         this.setDateNaissance(Date.valueOf(dateNaissance));
     }
 
 }
->>>>>>> Stashed changes
+    public void setDateNaissance(String dateNaissance) {
+        this.setDateNaissance(Date.valueOf(dateNaissance));
+    public void setDateNaissance(String dateNaissance) throws Exception {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        this.setDateNaissance(dateFormat.parse(dateNaissance));
+    }
+
+}

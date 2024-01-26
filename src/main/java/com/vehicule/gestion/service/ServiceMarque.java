@@ -3,9 +3,12 @@ package com.vehicule.gestion.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jakarta.transaction.Transactional;
+
 import java.util.List;
 import java.util.Optional;
 
+import com.jayway.jsonpath.Option;
 import com.vehicule.gestion.modele.Marque;
 import com.vehicule.gestion.repository.RepositoryMarque;
 
@@ -22,6 +25,7 @@ public class ServiceMarque {
         return repositoryMarque.save(marque);
     }
 
+    @Transactional
     public Optional<Marque> findById(String id_marque) {
         return repositoryMarque.findById(id_marque);
     }

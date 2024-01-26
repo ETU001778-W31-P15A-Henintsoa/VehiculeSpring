@@ -56,7 +56,7 @@ public class ControllerTypeCarburant {
     public ResponseEntity<String> findById(@PathVariable("id") String id) {
         try {
             Optional<TypeCarburant> lestypescarburants = servicetypecarburant.findById(id);
-            reponse = new ApiResponse("", lestypescarburants);
+            reponse = new ApiResponse("", lestypescarburants.get());
             return ResponseEntity.ok(gson.toJson(reponse));
         } catch (Exception e) {
             reponse = new ApiResponse(e.getMessage(), null);

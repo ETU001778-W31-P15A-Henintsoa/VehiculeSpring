@@ -23,6 +23,7 @@ import org.apache.commons.io.FileUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 public class TraitementImage {
+    static String apikey = "b6b7a7b84eddd705bfa4e3357e418627";
     static String urlServeurStockage = "https://api.imgbb.com/1/upload";
     static String UPLOAD_DIRECTORY = System.getProperty("user.dir") + "/uploads";
 
@@ -41,19 +42,6 @@ public class TraitementImage {
         File file = new File(pathfichier);
         return String.valueOf(file.exists());
     }
-
-    // public void tuto(File fileToUpload) throws Exception {
-    // HttpClient httpClient = HttpClients.createDefault();
-    // HttpPost httpPost = new HttpPost(uploadUrl);
-    // MultipartEntityBuilder builder = MultipartEntityBuilder.create();
-    // builder.addBinaryBody("file", file, ContentType.APPLICATION_OCTET_STREAM,
-    // file.getName());
-    // httpPost.setEntity(builder.build());
-    // HttpResponse response = httpClient.execute(httpPost);
-    // // Handle the response as needed
-    // System.out.println("Response Code: " +
-    // response.getStatusLine().getStatusCode());
-    // }
 
     public String uploadImage(MultipartFile fichier) throws Exception {
         StringBuilder fileNames = new StringBuilder();
@@ -77,6 +65,14 @@ public class TraitementImage {
 
     public static void setUPLOAD_DIRECTORY(String uPLOAD_DIRECTORY) {
         UPLOAD_DIRECTORY = uPLOAD_DIRECTORY;
+    }
+
+    public static String getApikey() {
+        return apikey;
+    }
+
+    public static void setApikey(String apikey) {
+        TraitementImage.apikey = apikey;
     }
 
 }

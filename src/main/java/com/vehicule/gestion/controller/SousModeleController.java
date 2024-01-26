@@ -34,4 +34,5 @@ public class SousModeleController {
         }
         return ResponseEntity.status(500).body("Ce sous modele existe dejà");
     }
+
 }

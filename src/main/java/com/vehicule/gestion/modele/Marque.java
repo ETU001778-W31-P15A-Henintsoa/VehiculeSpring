@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 import java.util.List;
 
@@ -13,13 +15,15 @@ import lombok.Data;
 @Entity
 @Data
 public class Marque {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idmarque")
     String id;
-    @Column(name="nommarque")
+    @Column(name = "nommarque")
     String nom_Marque;
-    String pays;
+    @ManyToOne
+    @JoinColumn(name = "pays")
+    Pays pays;
 
     public Marque() {
     }
@@ -28,7 +32,7 @@ public class Marque {
         this.setNomMarque(nom_Marque);
     }
 
-    public Marque(String nom_Marque, String pays) throws Exception {
+    public Marque(String nom_Marque, Pays pays) throws Exception {
         this.setNomMarque(nom_Marque);
         this.setPays(pays);
     }
@@ -52,30 +56,12 @@ public class Marque {
         this.nom_Marque = nom_Marque;
     }
 
-    public String getPays() {
+    public Pays getPays() {
         return this.pays;
     }
 
-    public void setPays(String pays) {
+    public void setPays(Pays pays) {
         this.pays = pays;
-    }
-
-    public boolean controlExistanceMarqueByName(List<Marque> marqueExistant) throws Exception {
-        for (Marque marque : marqueExistant) {
-            if (marque.getNomMarque().equalsIgnoreCase(this.getNomMarque())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean controlExistanceMarqueById(List<Marque> marqueExistant) throws Exception {
-        for (Marque marque : marqueExistant) {
-            if (marque.getId_Marque().equalsIgnoreCase(this.getId_Marque())) {
-                return true;
-            }
-        }
-        return false;
     }
 
 }

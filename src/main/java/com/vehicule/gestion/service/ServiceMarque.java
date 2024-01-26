@@ -8,7 +8,6 @@ import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-import com.jayway.jsonpath.Option;
 import com.vehicule.gestion.modele.Marque;
 import com.vehicule.gestion.repository.RepositoryMarque;
 
@@ -32,22 +31,6 @@ public class ServiceMarque {
 
     public void deleteById(String idmarque) {
         repositoryMarque.deleteById(idmarque);
-    }
-
-    public void controleExistanceId(Marque marque) throws Exception {
-        List<Marque> marques = this.findAll();
-        boolean b = marque.controlExistanceMarqueById(marques);
-        if (b == false) {
-            throw new Exception("Marque non Existant");
-        }
-    }
-
-    public void controleExistanceNom(Marque marque) throws Exception {
-        List<Marque> marques = this.findAll();
-        boolean b = marque.controlExistanceMarqueByName(marques);
-        if (b == true) {
-            throw new Exception("Marque Existant");
-        }
     }
 
 }

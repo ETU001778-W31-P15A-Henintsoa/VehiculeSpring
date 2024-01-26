@@ -15,25 +15,22 @@ import java.util.Optional;
 import jakarta.transaction.Transactional;
 
 import com.vehicule.gestion.modele.ApiResponse;
-import com.vehicule.gestion.modele.Marque;
 import com.vehicule.gestion.modele.Pays;
-import com.vehicule.gestion.service.ServiceMarque;
 import com.vehicule.gestion.service.ServicePays;
 
 @RestController
-public class ControllerMarque {
+public class ControllerPays {
 
     @Autowired
-    private ServiceMarque servicemarque;
-    private final ServicePays servicepays = new ServicePays();
+    private ServicePays servicepays;
     private Gson gson = new Gson();
     private ApiResponse reponse;
 
-    @GetMapping("/marques")
+    @GetMapping("/pays")
     public ResponseEntity<String> findAll() {
         try {
-            List<Marque> lesMarques = servicemarque.findAll();
-            reponse = new ApiResponse("", lesMarques);
+            List<Pays> lesPays = servicepays.findAll();
+            reponse = new ApiResponse("", lesPays);
             return ResponseEntity.ok(gson.toJson(reponse));
         } catch (Exception e) {
             e.printStackTrace();
@@ -43,15 +40,12 @@ public class ControllerMarque {
     }
 
     @Transactional(rollbackOn = Exception.class)
-    @PostMapping("/marque/{nom_marque}/{idpays}")
-    public ResponseEntity<String> save(@PathVariable("nom_marque") String nomMarque,
-            @PathVariable("idpays") String idpays) {
+    @PostMapping("/pays/{nom_pays}")
+    public ResponseEntity<String> save(@PathVariable("nom_pays") String nomMarque) {
         try {
-            Pays pays = new Pays();
-            pays.setId(idpays);
-            Marque marque = new Marque(nomMarque, pays);
-            servicemarque.save(marque);
-            return ResponseEntity.ok("Marque saved successfully.");
+            Pays pays = new Pays(nomMarque);
+            servicepays.save(pays);
+            return ResponseEntity.ok("Pays saved successfully.");
         } catch (Exception e) {
             e.printStackTrace();
             reponse = new ApiResponse(e.getMessage(), null);
@@ -60,11 +54,10 @@ public class ControllerMarque {
 
     }
 
-    @GetMapping("/marques/{id_marque}")
-    public ResponseEntity<String> findById(@PathVariable("id_marque") String id_marque) {
+    @GetMapping("/paysspecifique/{idpays}")
+    public ResponseEntity<String> findById(@PathVariable("idpays") String idPays) {
         try {
-            Optional<Marque> lesMarques = servicemarque.findById(id_marque);
-            ;
+            Optional<Pays> lesMarques = servicepays.findById(idPays);
             reponse = new ApiResponse("", lesMarques.get());
             return ResponseEntity.ok(gson.toJson(reponse));
         } catch (Exception e) {
@@ -75,11 +68,11 @@ public class ControllerMarque {
     }
 
     @Transactional(rollbackOn = Exception.class)
-    @PostMapping("/marque/{id_marque}")
-    public ResponseEntity<String> deleteById(@PathVariable("id_marque") String id_marque) {
+    @GetMapping("/suppressionpays/{idpays}")
+    public ResponseEntity<String> deleteById(@PathVariable("idpays") String idpays) {
         try {
-            servicemarque.deleteById(id_marque);
-            return ResponseEntity.ok("Marque id = " + id_marque + " deleted successfully.");
+            servicepays.deleteById(idpays);
+            return ResponseEntity.ok("Marque id = " + idpays + " deleted successfully.");
         } catch (Exception e) {
             e.printStackTrace();
             reponse = new ApiResponse(e.getMessage(), null);

@@ -32,7 +32,7 @@ create table TypeCarburant(
 create sequence seqFonctionnalite;
 create table FonctionnaliteTechnologique(
     idFonctionnaliteTechnologique varchar(20) default concat('TECH' || nextval('seqFonctionnalite')) primary key,
-    nomFonctionnaliteTechnologique varchar(50)
+    nomFonctionnaliteTechnologique varchar(50) unique
 );
 
 -- Modele (idModele, nomModele, idMarque [Marque] , idCategorie [Categorie])

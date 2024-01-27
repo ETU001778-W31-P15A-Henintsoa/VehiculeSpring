@@ -119,6 +119,8 @@ create table Annonce(
 
 alter table annonce add etat int;
 alter table annonce add nomsous varchar(30);
+
+
 -- ImageAnnonce(idImageAnnonce, idAnnonce [Annonce], nomimage)
 create sequence seqImageAnnonce;
 create table ImageAnnonce(

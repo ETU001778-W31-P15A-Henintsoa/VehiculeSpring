@@ -33,24 +33,6 @@ public class Annonce {
     @Column(name = "dateannonce")
     Timestamp dateAnnonce;
     int etat;
-    boolean estVendu;
-    boolean estValide;
-
-    public boolean isEstValide() {
-        return estValide;
-    }
-
-    public void setEstValide(boolean estValide) {
-        this.estValide = estValide;
-    }
-
-    public boolean isEstVendu() {
-        return estVendu;
-    }
-
-    public void setEstVendu(boolean estVendu) {
-        this.estVendu = estVendu;
-    }
 
     public int getEtat() {
         return etat;

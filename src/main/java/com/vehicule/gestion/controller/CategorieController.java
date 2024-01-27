@@ -57,4 +57,17 @@ public class CategorieController {
         }
         throw new Exception("Cette catégorie existe dejà");
     }
+
+    @Transactional
+    @PostMapping("/suppressionCategorie/{id_categorie}")
+    public ResponseEntity<String> delete(@PathVariable("id_categorie") String idCategorie) {
+        try {
+            entiteService.delete(idCategorie);
+            return ResponseEntity.ok("Suppression reussie");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
+
+    }
+
 }

@@ -2,15 +2,14 @@ package com.vehicule.gestion.modele;
 
 public class Interet {
     String idInteret;
-    float valeur;
-    
+    float taux;
 
-    public float getValeur() {
-        return valeur;
+    public float getTaux() {
+        return taux;
     }
 
-    public void setValeur(float valeur) {
-        this.valeur = valeur;
+    public void setTaux(float taux) {
+        this.taux = taux;
     }
 
     public String getIdInteret() {

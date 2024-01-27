@@ -33,7 +33,7 @@ public class ControllerTypeCarburant {
             return ResponseEntity.ok(gson.toJson(reponse));
         } catch (Exception e) {
             reponse = new ApiResponse(e.getMessage(), null);
-            return ResponseEntity.status(500).body(e.getMessage());
+            return ResponseEntity.status(500).body(gson.toJson(reponse));
         }
     }
 
@@ -60,20 +60,20 @@ public class ControllerTypeCarburant {
             return ResponseEntity.ok(gson.toJson(reponse));
         } catch (Exception e) {
             reponse = new ApiResponse(e.getMessage(), null);
-            return ResponseEntity.status(500).body(e.getMessage());
+            return ResponseEntity.status(500).body(gson.toJson(reponse));
         }
     }
 
-    // @Transactional(rollbackOn = Exception.class)
-    // @PostMapping("/typecarburant/delete/{id}")
-    // public ResponseEntity<String> deleteById(@PathVariable("id") String id) {
-    // try {
-    // servicetypecarburant.deleteById(id);
-    // return ResponseEntity.ok("Marque id = " + id + " deleted successfully.");
-    // } catch (Exception e) {
-    // // e.printStackTrace();
-    // reponse = new ApiResponse(e.getMessage(), null);
-    // return ResponseEntity.status(500).body(gson.toJson(reponse));
-    // }
-    // }
+    @Transactional(rollbackOn = Exception.class)
+    @PostMapping("/typecarburant/delete/{id}")
+    public ResponseEntity<String> deleteById(@PathVariable("id") String id) {
+        try {
+            servicetypecarburant.deleteById(id);
+            return ResponseEntity.ok("Marque id = " + id + " deleted successfully.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            reponse = new ApiResponse(e.getMessage(), null);
+            return ResponseEntity.status(500).body(gson.toJson(reponse));
+        }
+    }
 }

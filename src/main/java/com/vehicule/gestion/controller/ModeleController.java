@@ -17,6 +17,7 @@ import jakarta.transaction.Transactional;
 
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
@@ -35,6 +36,28 @@ public class ModeleController {
         } catch (Exception e) {
             reponse = new ApiResponse(e.getMessage(), null);
             return ResponseEntity.status(500).body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/modele/{id}")
+    public ResponseEntity<String> findAllById(@PathVariable("id") Iterable<String> id) {
+        try {
+            reponse = new ApiResponse("", modeleService.findAllById(id));
+            return ResponseEntity.ok(gson.toJson(reponse));
+        } catch (Exception e) {
+            reponse = new ApiResponse(e.getMessage(), null);
+            return ResponseEntity.status(500).body(gson.toJson(reponse));
+        }
+    }
+
+    @GetMapping("/modeleByName/{nom}")
+    public ResponseEntity<String> findAllById(@PathVariable("nom") String nom) {
+        try {
+            reponse = new ApiResponse("", modeleService.findAllByNomModele(nom));
+            return ResponseEntity.ok(gson.toJson(reponse));
+        } catch (Exception e) {
+            reponse = new ApiResponse(e.getMessage(), null);
+            return ResponseEntity.status(500).body(gson.toJson(reponse));
         }
     }
 

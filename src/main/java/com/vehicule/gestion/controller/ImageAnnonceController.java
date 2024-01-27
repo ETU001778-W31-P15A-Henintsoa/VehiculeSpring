@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,8 +31,8 @@ public class ImageAnnonceController {
     @GetMapping("/imageAnnonces")
     public ResponseEntity<String> getAll() {
         try {
-            List<ImageAnnonce> categories = entiteService.findAll();
-            response = new ApiResponse("", categories);
+            List<ImageAnnonce> images = entiteService.findAll();
+            response = new ApiResponse("", images);
             return ResponseEntity.ok(gson.toJson(response));
         } catch (Exception e) {
             response = new ApiResponse(e.getMessage(), null);
@@ -39,9 +40,17 @@ public class ImageAnnonceController {
         }
     }
 
-    // public List<Categorie> findAllById(String id){
-    // return entiteService.findAllById(id);
-    // }
+    @GetMapping("/imageAnnonces/{id}")
+    public ResponseEntity<String> findAllById(@PathVariable("id") Iterable<String> id) {
+        try {
+            List<ImageAnnonce> images = entiteService.findAllById(id);
+            response = new ApiResponse("", images);
+            return ResponseEntity.ok(gson.toJson(response));
+        } catch (Exception e) {
+            response = new ApiResponse(e.getMessage(), null);
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
+    }
 
     @Transactional
     @PostMapping("/imageAnnonce")

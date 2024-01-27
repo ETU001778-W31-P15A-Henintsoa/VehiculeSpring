@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -28,6 +29,12 @@ public class ControllerMarque {
     private final ServicePays servicepays = new ServicePays();
     private Gson gson = new Gson();
     private ApiResponse reponse;
+
+    // @GetMapping("/marques")
+    // public List<Marque> findAll() {
+    // List<Marque> lesMarques = servicemarque.findAll();
+    // return lesMarques;
+    // }
 
     @GetMapping("/marques")
     public ResponseEntity<String> findAll() {

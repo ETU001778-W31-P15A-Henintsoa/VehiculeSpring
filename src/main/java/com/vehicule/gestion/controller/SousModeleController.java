@@ -39,8 +39,8 @@ public class SousModeleController {
         }
     }
 
-    @GetMapping("/SousModele/{nom}")
-    public ResponseEntity<String> findAllById(@PathVariable("nom") String idCategorie) {
+    @GetMapping("/SousModele/{id}")
+    public ResponseEntity<String> findAllById(@PathVariable("id") String idCategorie) {
         try {
             List<SousModele> categorie = entiteService.findAllByIdSousModele(idCategorie);
             response = new ApiResponse("", categorie);
@@ -50,7 +50,7 @@ public class SousModeleController {
         }
     }
 
-    @GetMapping("/SousModele/{nom}")
+    @GetMapping("/SousModeleByNom/{nom}")
     public ResponseEntity<String> findAllByNomSous(@PathVariable("nom") String idCategorie) {
         try {
             List<SousModele> categorie = entiteService.findAllByNomSous(idCategorie);

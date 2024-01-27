@@ -7,22 +7,23 @@ import org.springframework.stereotype.Service;
 
 import com.vehicule.gestion.modele.Interet;
 import com.vehicule.gestion.modele.SousModele;
+import com.vehicule.gestion.repository.InteretRepository;
 
 @Service
 public class InteretService {
     @Autowired
-    private InteretService interetService;
+    private InteretRepository interetRepository;
 
     public List<Interet> findAll() {
-        return interetService.findAll();
+        return interetRepository.findAll();
     }
 
     public Interet save(Interet c) {
-        return interetService.save(c);
+        return interetRepository.save(c);
     }
 
     public void deletById(String id) {
-        interetService.deletById(id);
+        interetRepository.deleteById(id);
     }
 
 }

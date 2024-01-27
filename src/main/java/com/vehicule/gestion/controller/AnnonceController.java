@@ -86,8 +86,14 @@ public class AnnonceController {
         }
     }
 
-    public List<Annonce> getValidedAnnonce() {
-        return annonceService.findAllByEtat(1);
+    public ResponseEntity<String> getValidedAnnonce() {
+        try {
+            reponse = new ApiResponse("null", annonceService.findAllByEtat(1));
+            return ResponseEntity.ok(gson.toJson(reponse));
+        } catch (Exception e) {
+            reponse = new ApiResponse(e.getMessage(), null);
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
     }
 
     public ResponseEntity<String> getNonValidedAnnonce() {

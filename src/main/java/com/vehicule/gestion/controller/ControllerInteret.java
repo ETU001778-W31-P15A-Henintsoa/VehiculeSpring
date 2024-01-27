@@ -39,7 +39,7 @@ public class ControllerInteret {
         }
     }
 
-    @GetMapping("/interet/")
+    @GetMapping("/interet")
     public ResponseEntity<String> save(@RequestBody Interet interet) {
         try {
             response = new ApiResponse("", entiteService.save(interet));

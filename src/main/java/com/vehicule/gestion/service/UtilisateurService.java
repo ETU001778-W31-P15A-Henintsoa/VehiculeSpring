@@ -28,6 +28,10 @@ public class UtilisateurService {
     return user;
   }
 
+  public List<Utilisateur> getAll() {
+    return utilisateurRepository.findAll();
+  }
+
   @Transactional
   public Optional<Utilisateur> findByMail(String mail) {
     Optional<Utilisateur> user = utilisateurRepository.findByMail(mail);

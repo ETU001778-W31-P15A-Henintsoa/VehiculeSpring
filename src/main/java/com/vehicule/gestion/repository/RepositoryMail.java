@@ -9,8 +9,7 @@ import org.springframework.stereotype.Repository;
 public interface RepositoryMail extends MongoRepository<Mail, String> {
 
     // GroceryItem findItemByName(String name);
-
-    // @Query(value="{category:'?0'}", fields="{'name' : 1, 'quantity' : 1}")
+    // @Query(value = "{category:'?0'}", fields = "{'name' : 1, 'quantity' : 1}")
     // List<GroceryItem> findAll(String category);
 
     // public long count();

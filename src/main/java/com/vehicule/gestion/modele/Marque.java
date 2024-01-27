@@ -15,8 +15,9 @@ import lombok.Data;
 public class Marque {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id_Marque")
+    @Column(name = "idmarque")
     String id;
+    @Column(name = "nommarque")
     String nom_Marque;
     String pays;
 

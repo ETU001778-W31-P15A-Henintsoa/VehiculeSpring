@@ -22,7 +22,7 @@ public class InteretService {
         return interetRepository.save(c);
     }
 
-    public void deletById(String id) {
+    public void deleteById(String id) {
         interetRepository.deleteById(id);
     }
 

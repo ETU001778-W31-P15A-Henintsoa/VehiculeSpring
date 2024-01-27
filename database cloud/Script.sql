@@ -104,6 +104,7 @@ create table Utilisateur(
 alter table utilisateur add role varchar(30);
 alter table utilisateur drop motdepasse;
 alter table utilisateur add motdepasse varchar;
+alter table utilisateur add datedenaissance date;
 
 -- Annonce (idAnnonce, idUtilisateur [Utilisateur], idSousModele [SousModele], Couleur, prix, prixMinimum, DateAnnonce (timestamp), estvendue(Boolean) ) 
 create sequence seqAnnonce;

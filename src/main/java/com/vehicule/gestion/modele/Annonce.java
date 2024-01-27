@@ -33,7 +33,9 @@ public class Annonce {
     @Column(name = "dateannonce")
     Timestamp dateAnnonce;
     int etat;
+    @Column(name = "dateannonce")
     boolean estVendu;
+    @Column(name = "dateannonce")
     boolean estValide;
 
     public boolean isEstValide() {

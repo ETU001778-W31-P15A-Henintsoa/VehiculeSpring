@@ -54,7 +54,7 @@ create table SousModele(
     automatique Boolean,
     puissanceMoteur float,
     Batterie float,
-    compte int serial
+    compte serial
 );
 
 -- ImageSousModele (idImageSousModele, isSousModele [SousModele], nomImage ) 
@@ -70,7 +70,7 @@ create sequence seqFonctionnaliteSousModele;
 create table FonctionnaliteTechnologiqueSousModele(
     idFonctionnaliteTechnologiqueSousModele varchar(20) default concat('TECHSMOD' || nextval('seqFonctionnaliteSousModele')) primary key,
     idSousModele varchar(20) references SousModele(idSousModele),
-    idFonctionnaliteTechnologique varchar(20) references FonctionnaliteTechnologique(idFocntionnaliteTechnologique)
+    idFonctionnaliteTechnologique varchar(20) references FonctionnaliteTechnologique(idFonctionnaliteTechnologique)
 );
 
 -- Interet (idInteret, taux)
@@ -94,7 +94,7 @@ create table Utilisateur(
 );
 
 -- Annonce (idAnnonce, idUtilisateur [Utilisateur], idSousModele [SousModele], Couleur, prix, prixMinimum, DateAnnonce (timestamp), estvendue(Boolean) ) 
-create sequene seqAnnonce;
+create sequence seqAnnonce;
 create table Annonce(
     idAnnonce varchar(20) default concat('ANN' || nextval('seqAnnonce')) primary key,
     idUtilisateur varchar(20) references Utilisateur(idUtilisateur),

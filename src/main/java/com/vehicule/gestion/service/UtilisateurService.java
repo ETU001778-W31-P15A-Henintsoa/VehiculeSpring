@@ -1,5 +1,6 @@
 package com.vehicule.gestion.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.vehicule.gestion.modele.Utilisateur;
@@ -25,6 +26,10 @@ public class UtilisateurService {
       System.out.println(user.get());
     }
     return user;
+  }
+
+  public List<Utilisateur> getAll() {
+    return utilisateurRepository.findAll();
   }
 
   @Transactional

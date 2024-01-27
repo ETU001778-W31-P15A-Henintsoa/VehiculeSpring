@@ -1,4 +1,5 @@
 package com.vehicule.gestion.modele;
+
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
@@ -15,7 +16,7 @@ import jakarta.persistence.OneToOne;
 public class Annonce {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="idannonce")
+    @Column(name = "idannonce")
     String idAnnonce;
 
     @ManyToOne
@@ -27,11 +28,29 @@ public class Annonce {
     SousModele sousModele;
     String couleur;
     float prix;
-    @Column(name="prixminimum")
+    @Column(name = "prixminimum")
     float prixMinimum;
-    @Column(name="dateannonce")
+    @Column(name = "dateannonce")
     Timestamp dateAnnonce;
     int etat;
+    boolean estVendu;
+    boolean estValide;
+
+    public boolean isEstValide() {
+        return estValide;
+    }
+
+    public void setEstValide(boolean estValide) {
+        this.estValide = estValide;
+    }
+
+    public boolean isEstVendu() {
+        return estVendu;
+    }
+
+    public void setEstVendu(boolean estVendu) {
+        this.estVendu = estVendu;
+    }
 
     public int getEtat() {
         return etat;
@@ -47,8 +66,8 @@ public class Annonce {
 
     public void setDateAnnonce(Timestamp dateAnnonce) {
         this.dateAnnonce = dateAnnonce;
-        if(dateAnnonce==null){
-            dateAnnonce=Timestamp.valueOf(LocalDateTime.now());
+        if (dateAnnonce == null) {
+            dateAnnonce = Timestamp.valueOf(LocalDateTime.now());
         }
     }
 
@@ -56,8 +75,8 @@ public class Annonce {
         return prixMinimum;
     }
 
-    public void setPrixMinimum(float prixMinimum) throws Exception{
-        if(prixMinimum<=0){
+    public void setPrixMinimum(float prixMinimum) throws Exception {
+        if (prixMinimum <= 0) {
             throw new Exception("Prix minimum non valide");
         }
         this.prixMinimum = prixMinimum;
@@ -67,8 +86,8 @@ public class Annonce {
         return prix;
     }
 
-    public void setPrix(float prix) throws Exception{
-        if(prix<=0){
+    public void setPrix(float prix) throws Exception {
+        if (prix <= 0) {
             throw new Exception("Prix  non valide");
         }
         this.prix = prix;
@@ -79,7 +98,7 @@ public class Annonce {
     }
 
     public void setCouleur(String couleur) {
-        
+
         this.couleur = couleur;
     }
 
@@ -108,8 +127,8 @@ public class Annonce {
     }
 
     // public boolean isNomDuplacated(List<SousModele> modele){
-    //     if(modele.size()>0){
-    //          return true;
-    //     }
+    // if(modele.size()>0){
+    // return true;
+    // }
     // }
 }

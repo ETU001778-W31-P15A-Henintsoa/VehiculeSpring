@@ -17,6 +17,6 @@ public interface AnnonceRepository extends JpaRepository<Annonce, String> {
 
     List<Annonce> findAllByEtat(int etat);
 
-    @Query(value = "SELECT a FROM annonce a WHERE a.utilisateur.idUtilisateur = :idutilisateur and a.etat<= :etat and a.etat>0")
+    @Query(value = "SELECT a FROM annonce a WHERE a.utilisateur.id = :idutilisateur and a.etat<= :etat and a.etat>0")
     List<Annonce> findByUtilisateurAndEtat(@Param("idutilisateur") String idUtilisateur, @Param("etat") int etat);
 }

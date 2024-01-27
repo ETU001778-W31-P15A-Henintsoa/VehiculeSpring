@@ -52,11 +52,17 @@ public class SecurityConfig {
           req
               .requestMatchers("/initial/**")
               .permitAll() // Autorise toutes les requêtes correspondant à "/auth/**"
-              .requestMatchers(HttpMethod.POST, "/marque/**")
+              .requestMatchers(HttpMethod.GET, "/greeting")
               .permitAll()
               .requestMatchers("/error/**")
               .permitAll() // Autorise toutes les requêtes correspondant à "/error/**"
               .requestMatchers(HttpMethod.GET, "/test/hello").permitAll()
+              // for testing without security first
+              .requestMatchers(HttpMethod.GET, "/marques").permitAll()
+              .requestMatchers(HttpMethod.GET, "/marque").permitAll()
+              .requestMatchers(HttpMethod.GET, "/typecarburants").permitAll()
+              .requestMatchers(HttpMethod.GET, "/fonctionnalite").permitAll()
+              .requestMatchers(HttpMethod.GET, "/categorie").permitAll()
               .anyRequest()
               .authenticated(); // Exige une authentification pour toutes les autres requêtes
         })

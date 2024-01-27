@@ -3,6 +3,7 @@ package com.vehicule.gestion.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -89,13 +90,25 @@ public class AnnonceController {
         return annonceService.findAllByEtat(1);
     }
 
-    public List<Annonce> getNonValidedAnnonce() {
-        return annonceService.findAllByEtat(0);
+    public ResponseEntity<String> getNonValidedAnnonce() {
+        try {
+            reponse = new ApiResponse("", annonceService.findAllByEtat(0));
+            return ResponseEntity.ok(gson.toJson(reponse));
+        } catch (Exception e) {
+            reponse = new ApiResponse(e.getMessage(), null);
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
     }
 
     @Transactional
     @PostMapping("/annonce")
-    public Annonce save(@RequestBody Annonce c) throws Exception {
-        return annonceService.save(c);
+    public ResponseEntity<String> save(@RequestBody Annonce c) throws Exception {
+        try {
+            reponse = new ApiResponse("", annonceService.save(c));
+            return ResponseEntity.ok(gson.toJson(reponse));
+        } catch (Exception e) {
+            reponse = new ApiResponse(e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(gson.toJson(reponse));
+        }
     }
 }

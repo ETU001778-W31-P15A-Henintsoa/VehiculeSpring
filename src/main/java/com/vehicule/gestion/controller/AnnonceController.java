@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -106,6 +107,18 @@ public class AnnonceController {
         try {
             reponse = new ApiResponse("", annonceService.save(c));
             return ResponseEntity.ok(gson.toJson(reponse));
+        } catch (Exception e) {
+            reponse = new ApiResponse(e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(gson.toJson(reponse));
+        }
+    }
+
+    @Transactional
+    @PostMapping("/MAJannonce/{idAnnonce}")
+    public ResponseEntity<String> update(@PathVariable("idAnnonce") String idAnnonce) throws Exception {
+        try {
+            annonceService.update(idAnnonce, 3);
+            return ResponseEntity.ok("Annonce " + idAnnonce + " validee");
         } catch (Exception e) {
             reponse = new ApiResponse(e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(gson.toJson(reponse));

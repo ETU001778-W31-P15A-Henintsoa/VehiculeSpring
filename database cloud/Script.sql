@@ -10,7 +10,7 @@ create table Pays(
 create sequence seqMarque;
 create table Marque (
     idMarque varchar(20) default concat('MAR' || nextval('seqMarque')) primary key,
-    nomMarque varchar(30),
+    nomMarque varchar(30) unique,
     Pays varchar(20) references Pays(idPays)
 );
 
@@ -18,14 +18,14 @@ create table Marque (
 create sequence seqCategorie;
 create table Categorie(
     idCategorie varchar(20) default concat('CAT' || nextval('seqCAtegorie')) primary key,
-    nomCategorie varchar(50)
+    nomCategorie varchar(50) unique
 );
 
 -- TypeCarburant (idTypeCarburant, nomTypeCarburant)
 create sequence seqTypeCarburant;
 create table TypeCarburant(
     idTypeCarburant varchar(20) default concat('TYCAR' || nextval('seqTypeCarburant')) primary key,
-    nomTypeCarburant varchar(50)
+    nomTypeCarburant varchar(50) unique
 );
 
 -- FonctionnaliteTechnologique (idFonctionnaliteTechnologique, nomFonctionnaliteTechnologique)
@@ -102,9 +102,9 @@ create table Utilisateur(
     dateNaissance date
 );
 alter table utilisateur add role varchar(30);
-
 alter table utilisateur drop motdepasse;
 alter table utilisateur add motdepasse varchar;
+
 -- Annonce (idAnnonce, idUtilisateur [Utilisateur], idSousModele [SousModele], Couleur, prix, prixMinimum, DateAnnonce (timestamp), estvendue(Boolean) ) 
 create sequence seqAnnonce;
 create table Annonce(
@@ -128,29 +128,32 @@ create table ImageAnnonce(
 );
 
 -- Mail (idMail, idUtilisateurEnvoyeur,  idUtilisateurReceveur)
-create sequence seqMail;
-create table Mail(
-    idMail varchar(20) default concat('MAIL' || nextval('seqMail')) primary key,
-    idUtilisateurEnvoyeur varchar(20) references Utilisateur(idUtilisateur),
-    idUtilisateurReceveur varchar(20) references Utilisateur(idUtilisateur)
-);
+-- create sequence seqMail;
+-- create table Mail(
+--     idMail varchar(20) default concat('MAIL' || nextval('seqMail')) primary key,
+--     idUtilisateurEnvoyeur varchar(20) references Utilisateur(idUtilisateur),
+--     idUtilisateurReceveur varchar(20) references Utilisateur(idUtilisateur)
+-- );
 
 -- Message (idMessage, idMail [Mail], message, estVue(Boolean) )
+-- BASE NOSQL (tsy maninona na tsy ampidirina any anaty base ary fa tonga dia ampidiriny ho azy ilay document)
 create sequence seqMessage;
 create table Message(
-    idMessage varchar(20) default concat('MESS' || nextval('seqMessage')) primary key,
-    idMAil varchar(20) references Mail(idMail),
+    idMessage varchar(20) primary key,
+    dateMessage timestamp,
+    idUtilisateurEnvoyeur varchar(20) references Utilisateur(idUtilisateur),
+    idUtilisateurReceveur varchar(20) references Utilisateur(idUtilisateur),
     message varchar(100),
-    estVue Boolean
+    listePieceJointe
 );
 
 -- ImagePJMail(idImagePJMail, idMessage [Message], nomfichier)
-create sequence seqImagePJMail;
-create table ImagePJMail(
-    idImagePJMail varchar(20) default concat('IMGMAIL' || nextval('seqImagePJMAil')) primary key,
-    idMessage varchar(20) references Message(idMessage),
-    nomfichier varchar(50)
-);
+-- create sequence seqImagePJMail;
+-- create table ImagePJMail(
+--     idImagePJMail varchar(20) default concat('IMGMAIL' || nextval('seqImagePJMAil')) primary key,
+--     idMessage varchar(20) references Message(idMessage),
+--     nomfichier varchar(50)
+-- );
 
 -- Caracteristique(idcaracteristique, nomCaracteristique)
 create sequence seqCaracteristique;

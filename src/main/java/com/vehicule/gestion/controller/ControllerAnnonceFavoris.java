@@ -23,8 +23,8 @@ import com.vehicule.gestion.service.UtilisateurService;
 import jakarta.transaction.Transactional;
 
 @RestController
-@RequestMapping("/annonce")
-public class AnnonceController {
+@RequestMapping("/annoncefavoris")
+public class ControllerAnnonceFavoris {
 
     @Autowired
     private AnnonceService annonceService;

@@ -184,3 +184,12 @@ create table Vente(
     prix float
 );
 
+create sequence seqAnnonceFavoris;
+create table AnnonceFavoris(
+    idAnnonceFavoris varchar(20) default concat('ANF' || nextval('seqAnnonceFavoris')) 
+    idUtilisateur varchar(20) references Utilisateur(idUtilisateur),
+    idAnnonce varchar(20) references Annonce(idAnnonce),
+    etat int,
+    datefavoris date
+);
+

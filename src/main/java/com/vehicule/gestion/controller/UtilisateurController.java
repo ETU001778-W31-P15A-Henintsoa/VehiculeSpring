@@ -7,11 +7,13 @@ import com.vehicule.gestion.auth.RegisterRequest;
 import com.vehicule.gestion.service.AuthenticationService;
 import com.vehicule.gestion.tools.Util;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/initial")
 public class UtilisateurController {
 
@@ -43,4 +45,15 @@ public class UtilisateurController {
         HttpStatusCode.valueOf(400));
   }
 
+  // @PostMapping("/login")
+  // public ResponseEntity<Map<String, Object>> auth(
+  // @RequestParam("login") String login,
+  // @RequestParam("motDePasse") String motDePasse) {
+  // AuthenticationRequest auth = new AuthenticationRequest();
+  // auth.setLogin(login);
+  // auth.setMotDePasse(motDePasse);
+  // Map<String, Object> response = Util.getDefaultResponse();
+  // response.put("response", service.authenticate(auth));
+  // return new ResponseEntity<>(response, HttpStatus.OK);
+  // }
 }

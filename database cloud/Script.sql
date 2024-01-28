@@ -184,3 +184,12 @@ create table Vente(
     prix float
 );
 
+----------------------------------------Fiderana 28 janvier---------------------------------------------------
+alter table Interet add date date;
+
+create sequence seqHistoriqueInteret;
+create table historiqueInteret(
+    idHistoriqueInteret varchar(20) default concat('VEN' || nextval('seqHistoriqueInteret')) primary key,
+    taux float,
+    date date
+);

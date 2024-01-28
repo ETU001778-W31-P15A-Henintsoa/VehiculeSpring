@@ -184,6 +184,7 @@ create table Vente(
     prix float
 );
 
+
 ----------------------------------------Fiderana 28 janvier---------------------------------------------------
 alter table Interet add date date;
 

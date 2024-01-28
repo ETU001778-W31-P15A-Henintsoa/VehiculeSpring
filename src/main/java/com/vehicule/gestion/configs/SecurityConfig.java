@@ -54,11 +54,13 @@ public class SecurityConfig {
               .permitAll() // Autorise toutes les requêtes correspondant à "/auth/**"
               .requestMatchers(HttpMethod.GET, "/greeting")
               .permitAll()
-              .requestMatchers("/error/**")
-              .permitAll() // Autorise toutes les requêtes correspondant à "/error/**"
+              .requestMatchers("/error/**").permitAll() // Autorise toutes les requêtes correspondant à "/error/**"
               .requestMatchers(HttpMethod.GET, "/test/hello").permitAll()
               // for testing without security first
               .requestMatchers(HttpMethod.GET, "/marques").permitAll()
+              // Annonce
+              .requestMatchers(HttpMethod.POST, "/annonce/**").permitAll()
+              // --------------------------
               .requestMatchers(HttpMethod.GET, "/marque").permitAll()
               .requestMatchers(HttpMethod.GET, "/typecarburants").permitAll()
               .requestMatchers(HttpMethod.GET, "/fonctionnalite").permitAll()

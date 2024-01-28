@@ -1,6 +1,20 @@
 package com.vehicule.gestion.modele;
 
-import jakarta.persistence.Column;
+<<<<<<< Updated upstream
+public class Interet {
+    String idInteret;
+    float valeur;
+    
+
+    public float getValeur() {
+        return valeur;
+    }
+
+    public void setValeur(float valeur) {
+        this.valeur = valeur;
+=======
+import java.sql.Date;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,16 +24,26 @@ import jakarta.persistence.Id;
 public class Interet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idinteret")
     String idInteret;
-    float taux;
+    float Taux;
+    Date date;
+    
 
-    public float getTaux() {
-        return taux;
+    public Date getDate() {
+        return date;
     }
 
-    public void setTaux(float taux) {
-        this.taux = taux;
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public float getTaux() {
+        return Taux;
+    }
+
+    public void setTaux(float Taux) {
+        this.Taux = Taux;
+>>>>>>> Stashed changes
     }
 
     public String getIdInteret() {

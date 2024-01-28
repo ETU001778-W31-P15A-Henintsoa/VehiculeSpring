@@ -32,7 +32,7 @@ public class AnnonceController {
     @Autowired
     private UtilisateurService utilisateurService;
 
-    @PostMapping("/Liste")
+    @GetMapping("/validees")
     public ResponseEntity<String> getList() {
         try {
             List<Annonce> annonce = annonceService.findAllByEtat(3);
@@ -44,7 +44,7 @@ public class AnnonceController {
         }
     }
 
-    @PostMapping("/Avalide")
+    @GetMapping("/aValider")
     public ResponseEntity<String> valideAnnonce() {
         try {
             List<Annonce> annonce = annonceService.findAllByEtat(0);
@@ -56,7 +56,7 @@ public class AnnonceController {
         }
     }
 
-    @GetMapping("/mesListes")
+    @GetMapping("/mesAnnoncesActuelles")
     public ResponseEntity<String> avoirMesListes() {
         try {
             String mailUtilisateur = String.valueOf(SecurityContextHolder.getContext().getAuthentication().getName());

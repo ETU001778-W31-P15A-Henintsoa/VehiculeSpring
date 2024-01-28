@@ -3,8 +3,10 @@ package com.vehicule.gestion.modele;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name="meilleurmarquevendu")
 public class MeilleurMarqueVendu {
     @Id
     @Column(name="idmarque")

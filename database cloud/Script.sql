@@ -119,6 +119,8 @@ create table Annonce(
 
 alter table annonce add etat int;
 alter table annonce add nomsous varchar(30);
+
+
 -- ImageAnnonce(idImageAnnonce, idAnnonce [Annonce], nomimage)
 create sequence seqImageAnnonce;
 create table ImageAnnonce(
@@ -182,3 +184,13 @@ create table Vente(
     prix float
 );
 
+
+----------------------------------------Fiderana 28 janvier---------------------------------------------------
+alter table Interet add date date;
+
+create sequence seqHistoriqueInteret;
+create table historiqueInteret(
+    idHistoriqueInteret varchar(20) default concat('VEN' || nextval('seqHistoriqueInteret')) primary key,
+    taux float,
+    date date
+);

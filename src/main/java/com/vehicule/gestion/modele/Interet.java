@@ -14,6 +14,7 @@ public class Interet {
     String idInteret;
     float Taux;
     Date date;
+    
 
     public Date getDate() {
         return date;

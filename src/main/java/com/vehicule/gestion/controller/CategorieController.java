@@ -2,6 +2,7 @@ package com.vehicule.gestion.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,7 @@ import jakarta.transaction.Transactional;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class CategorieController {
     @Autowired
     private CategorieService entiteService;
@@ -50,12 +52,20 @@ public class CategorieController {
 
     @Transactional
     @PostMapping("/categorie")
-    public Categorie save(@RequestBody Categorie c) throws Exception {
-        List<Categorie> categorie = entiteService.findAllByNomCategorie(c.getNomCategorie());
-        if (c.isNomDuplicated(categorie) == false) {
-            return entiteService.save(c);
+    public ResponseEntity<String> save(@RequestBody Categorie c) {
+        try {
+            List<Categorie> categorie = entiteService.findAllByNomCategorie(c.getNomCategorie());
+            if (c.isNomDuplicated(categorie) == false) {
+                response = new ApiResponse("", entiteService.save(c));
+                return ResponseEntity.ok(gson.toJson(response));
+            }
+            return ResponseEntity.status(500).body("Cette catégorie existe dejà");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            response = new ApiResponse(e.getMessage(), null);
+            return ResponseEntity.status(500).body(gson.toJson(response));
         }
-        throw new Exception("Cette catégorie existe dejà");
     }
 
     @Transactional

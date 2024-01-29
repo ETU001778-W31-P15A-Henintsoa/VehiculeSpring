@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,34 +22,37 @@ import jakarta.transaction.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class ControllerInteret {
-    @Autowired
-    private InteretService entiteService;
-    private Gson gson = new Gson();
-    private ApiResponse response;
+    
+    
+    // @Autowired
+    // private InteretService entiteService;
+    // private Gson gson = new Gson();
+   // private ApiResponse response;
 
-    @GetMapping("/interets")
-    public ResponseEntity<String> getAll() {
-        try {
-            List<Interet> interets = entiteService.findAll();
-            response = new ApiResponse("", interets);
-            return ResponseEntity.ok(gson.toJson(response));
-        } catch (Exception e) {
-            response = new ApiResponse(e.getMessage(), null);
-            return ResponseEntity.status(500).body(e.getMessage());
-        }
-    }
+    // @GetMapping("/interets")
+    // public ResponseEntity<String> getAll() {
+    // try {
+    // List<Interet> interets = entiteService.findAll();
+    // response = new ApiResponse("", interets);
+    // return ResponseEntity.ok(gson.toJson(response));
+    // } catch (Exception e) {
+    // response = new ApiResponse(e.getMessage(), null);
+    // return ResponseEntity.status(500).body(gson.toJson(response));
+    // }
+    // }
 
-    @GetMapping("/interet/")
-    public ResponseEntity<String> save(@RequestBody Interet interet) {
-        try {
-            response = new ApiResponse("", entiteService.save(interet));
-            return ResponseEntity.ok(gson.toJson(response));
-        } catch (Exception e) {
-            response = new ApiResponse(e.getMessage(), null);
-            return ResponseEntity.status(500).body(gson.toJson(response));
-        }
-    }
+    // @PostMapping("/interet")
+    // public ResponseEntity<String> save(@RequestBody Interet interet) {
+    // try {
+    // response = new ApiResponse("", entiteService.save(interet));
+    // return ResponseEntity.ok(gson.toJson(response));
+    // } catch (Exception e) {
+    // response = new ApiResponse(e.getMessage(), null);
+    // return ResponseEntity.status(500).body(gson.toJson(response));
+    // }
+    // }
 
     // @Transactional(rollbackOn = Exception.class)
     // @PostMapping("/interet/{id}")

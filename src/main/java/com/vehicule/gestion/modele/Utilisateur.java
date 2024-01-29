@@ -26,7 +26,7 @@ public class Utilisateur implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idutilisateur")
     String id;
-    @Column(name = "nomutilisateur")
+    @Column(name = "nom")
     String nomUtilisateur;
     String prenom;
     String adresse;

@@ -138,7 +138,7 @@ public class AnnonceController {
             return ResponseEntity.ok("Annonce " + idAnnonce + " validee");
         } catch (Exception e) {
             reponse = new ApiResponse(e.getMessage(), null);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(gson.toJson(reponse));
+            return ResponseEntity.status(500).body(gson.toJson(reponse));
         }
     }
 

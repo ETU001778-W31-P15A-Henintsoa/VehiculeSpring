@@ -50,17 +50,17 @@ public class ControllerInteret {
         }
     }
 
-    @Transactional(rollbackOn = Exception.class)
-    @PostMapping("/interet/{id}")
-    public ResponseEntity<String> deleteById(@PathVariable("id") String id) {
-        try {
-            entiteService.deleteById(id);
-            return ResponseEntity.ok("Interet id = " + id + " deleted successfully.");
-        } catch (Exception e) {
-            e.printStackTrace();
-            response = new ApiResponse(e.getMessage(), null);
-            return ResponseEntity.status(500).body(gson.toJson(response));
-        }
-    }
+    // @Transactional(rollbackOn = Exception.class)
+    // @PostMapping("/interet/{id}")
+    // public ResponseEntity<String> deleteById(@PathVariable("id") String id) {
+    //     try {
+    //         entiteService.deleteById(id);
+    //         return ResponseEntity.ok("Interet id = " + id + " deleted successfully.");
+    //     } catch (Exception e) {
+    //         e.printStackTrace();
+    //         response = new ApiResponse(e.getMessage(), null);
+    //         return ResponseEntity.status(500).body(gson.toJson(response));
+    //     }
+    // }
 
 }

@@ -31,8 +31,8 @@ public class SousModele {
     @ManyToOne
     @JoinColumn(name = "idtypecarburant")
     TypeCarburant typeCarburant;
-    @Column(name="estmanuel")
-    boolean estManuel;
+    // @Column(name="estmanuel")
+    // boolean estManuel;
     @Column(name="puissancemoteur")
     float puissanceMoteur;
     float batterie;
@@ -45,13 +45,13 @@ public class SousModele {
         this.batterie = batterie;
     }
 
-    public boolean isEstManuel() {
-        return estManuel;
-    }
+    // public boolean isEstManuel() {
+    //     return estManuel;
+    // }
 
-    public void setEstManuel(boolean estManuel) {
-        this.estManuel = estManuel;
-    }
+    // public void setEstManuel(boolean estManuel) {
+    //     this.estManuel = estManuel;
+    // }
 
     public float getConsommation() {
         return consommation;

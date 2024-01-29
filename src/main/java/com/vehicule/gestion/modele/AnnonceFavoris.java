@@ -32,12 +32,10 @@ public class AnnonceFavoris {
     @Column(name = "datefavoris")
     Date datefavoris;
 
-    public AnnonceFavoris(String idAnnonceFavoris, Utilisateur utilisateur, Annonce annonce, int etat,
-            Date datefavoris) {
-        this.idAnnonceFavoris = idAnnonceFavoris;
+    public AnnonceFavoris(Utilisateur utilisateur, Annonce annonce) {
         this.utilisateur = utilisateur;
         this.annonce = annonce;
-        this.etat = etat;
+        this.setEtat(0);
         this.setDatefavoris(Date.valueOf(LocalDate.now()));
     }
 

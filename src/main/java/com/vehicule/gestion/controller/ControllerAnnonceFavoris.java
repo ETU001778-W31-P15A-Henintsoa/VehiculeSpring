@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 import com.vehicule.gestion.modele.Annonce;
+import com.vehicule.gestion.modele.AnnonceFavoris;
 import com.vehicule.gestion.modele.ApiResponse;
 import com.vehicule.gestion.modele.Utilisateur;
 import com.vehicule.gestion.service.AnnonceService;
+import com.vehicule.gestion.service.ServiceAnnonceFavoris;
 import com.vehicule.gestion.service.UtilisateurService;
 
 import jakarta.transaction.Transactional;
@@ -27,101 +29,40 @@ import jakarta.transaction.Transactional;
 public class ControllerAnnonceFavoris {
 
     @Autowired
-    private AnnonceService annonceService;
+    private ServiceAnnonceFavoris serviceannoncefavoris;
     private Gson gson = new Gson();
     private ApiResponse reponse;
     @Autowired
     private UtilisateurService utilisateurService;
 
-    @GetMapping("/validees")
+    @GetMapping("/listefavoris")
     public ResponseEntity<String> getList() {
         try {
-            List<Annonce> annonce = annonceService.findAllByEtat(3);
-            reponse = new ApiResponse("", annonce);
+            String mailutilisateur = String.valueOf(SecurityContextHolder.getContext().getAuthentication().getName());
+            Utilisateur utilisateur = utilisateurService.findByMail(mailutilisateur).get();
+            List<AnnonceFavoris> annonces = serviceannoncefavoris.findByIdUtilisateur(utilisateur.getIdUtilisateur());
+            reponse = new ApiResponse("", annonces);
             return ResponseEntity.ok(gson.toJson(reponse));
         } catch (Exception e) {
+            e.printStackTrace();
             reponse = new ApiResponse(e.getMessage(), null);
             return ResponseEntity.status(500).body(e.getMessage());
         }
     }
 
-    @GetMapping("/aValider")
-    public ResponseEntity<String> valideAnnonce() {
+    @GetMapping("/mettreFavoris/{idannonce}")
+    public ResponseEntity<String> valideAnnonce(@PathVariable("idannonce") String idannonce) {
         try {
-            List<Annonce> annonce = annonceService.findAllByEtat(0);
-            reponse = new ApiResponse("", annonce);
+            String mailutilisateur = String.valueOf(SecurityContextHolder.getContext().getAuthentication().getName());
+            Utilisateur utilisateur = utilisateurService.findByMail(mailutilisateur).get();
+            Annonce a = new Annonce();
+            a.setIdAnnonce(idannonce);
+            AnnonceFavoris annoncefavoris = new AnnonceFavoris(utilisateur, a);
+            reponse = new ApiResponse("", "Annonce ajouter au hebergement");
             return ResponseEntity.ok(gson.toJson(reponse));
         } catch (Exception e) {
             reponse = new ApiResponse(e.getMessage(), null);
             return ResponseEntity.status(500).body(e.getMessage());
-        }
-    }
-
-    @GetMapping("/mesAnnoncesActuelles")
-    public ResponseEntity<String> avoirMesListes() {
-        try {
-            String mailUtilisateur = String.valueOf(SecurityContextHolder.getContext().getAuthentication().getName());
-
-            Utilisateur utilisateur = utilisateurService.findByMail(mailUtilisateur).get();
-            List<Annonce> annonce = annonceService.findByUtilisateurAndEtat(utilisateur.getIdUtilisateur(), 3);
-            reponse = new ApiResponse("", annonce);
-            return ResponseEntity.ok(gson.toJson(reponse));
-        } catch (Exception e) {
-            reponse = new ApiResponse(e.getMessage(), null);
-            return ResponseEntity.status(500).body(e.getMessage());
-        }
-    }
-
-    @PostMapping("/mesListes")
-    public ResponseEntity<String> avoirHistorique() {
-        try {
-            String mailUtilisateur = String.valueOf(SecurityContextHolder.getContext().getAuthentication().getName());
-
-            Utilisateur utilisateur = utilisateurService.findByMail(mailUtilisateur).get();
-            List<Annonce> annonce = annonceService.findByUtilisateurAndEtat(utilisateur.getIdUtilisateur(), 6);
-            reponse = new ApiResponse("", annonce);
-            return ResponseEntity.ok(gson.toJson(reponse));
-        } catch (Exception e) {
-            reponse = new ApiResponse(e.getMessage(), null);
-            return ResponseEntity.status(500).body(e.getMessage());
-        }
-    }
-
-    public List<Annonce> getValidedAnnonce() {
-        return annonceService.findAllByEtat(1);
-    }
-
-    public ResponseEntity<String> getNonValidedAnnonce() {
-        try {
-            reponse = new ApiResponse("", annonceService.findAllByEtat(0));
-            return ResponseEntity.ok(gson.toJson(reponse));
-        } catch (Exception e) {
-            reponse = new ApiResponse(e.getMessage(), null);
-            return ResponseEntity.status(500).body(e.getMessage());
-        }
-    }
-
-    @Transactional
-    @PostMapping("/annonce")
-    public ResponseEntity<String> save(@RequestBody Annonce c) throws Exception {
-        try {
-            reponse = new ApiResponse("", annonceService.save(c));
-            return ResponseEntity.ok(gson.toJson(reponse));
-        } catch (Exception e) {
-            reponse = new ApiResponse(e.getMessage(), null);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(gson.toJson(reponse));
-        }
-    }
-
-    @Transactional
-    @GetMapping("/MAJannonce/{idAnnonce}")
-    public ResponseEntity<String> update(@PathVariable("idAnnonce") String idAnnonce) throws Exception {
-        try {
-            annonceService.update(idAnnonce, 3);
-            return ResponseEntity.ok("Annonce " + idAnnonce + " validee");
-        } catch (Exception e) {
-            reponse = new ApiResponse(e.getMessage(), null);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(gson.toJson(reponse));
         }
     }
 

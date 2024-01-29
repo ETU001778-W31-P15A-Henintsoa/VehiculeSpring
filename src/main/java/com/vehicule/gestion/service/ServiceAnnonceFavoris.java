@@ -24,11 +24,11 @@ public class ServiceAnnonceFavoris {
         return repositoryannoncefavoris.findAll();
     }
 
-    public Optional<AnnonceFavoris> findAllById(String id) {
-        return repositoryannoncefavoris.findById(id);
+    public List<AnnonceFavoris> findByIdUtilisateur(String id) {
+        return repositoryannoncefavoris.findByUtilisateur(id);
     }
 
-    public AnnonceFavoris save(Annonce c) {
+    public AnnonceFavoris save(AnnonceFavoris c) {
         return repositoryannoncefavoris.save(c);
     }
 

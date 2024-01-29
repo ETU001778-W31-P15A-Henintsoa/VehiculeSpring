@@ -7,12 +7,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.vehicule.gestion.modele.Annonce;
 import com.vehicule.gestion.modele.AnnonceFavoris;
 
 @Repository
 public interface RepositoryAnnonceFavoris extends JpaRepository<AnnonceFavoris, String> {
     @Query(value = "SELECT a FROM annoncefavoris a WHERE a.utilisateur.id = :idutilisateur")
-    List<Annonce> findByUtilisateur(@Param("idutilisateur") String idUtilisateur);
+    List<AnnonceFavoris> findByUtilisateur(@Param("idutilisateur") String idUtilisateur);
 
 }

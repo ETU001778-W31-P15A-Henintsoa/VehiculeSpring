@@ -1,18 +1,5 @@
 package com.vehicule.gestion.modele;
 
-<<<<<<< Updated upstream
-public class Interet {
-    String idInteret;
-    float valeur;
-    
-
-    public float getValeur() {
-        return valeur;
-    }
-
-    public void setValeur(float valeur) {
-        this.valeur = valeur;
-=======
 import java.sql.Date;
 
 import jakarta.persistence.Entity;
@@ -27,7 +14,6 @@ public class Interet {
     String idInteret;
     float Taux;
     Date date;
-    
 
     public Date getDate() {
         return date;
@@ -43,7 +29,6 @@ public class Interet {
 
     public void setTaux(float Taux) {
         this.Taux = Taux;
->>>>>>> Stashed changes
     }
 
     public String getIdInteret() {

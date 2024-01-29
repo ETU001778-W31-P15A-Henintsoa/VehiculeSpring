@@ -26,6 +26,7 @@ public class ControllerMessage {
 
     @Autowired
     private ServiceMessage servicemessage;
+    @Autowired
     private UtilisateurService utilisateurService;
     private Gson gson = new Gson();
     private ApiResponse reponse;

@@ -31,3 +31,9 @@ create or replace view meilleurMarqueVendu as
 create or replace view meilleurVendeur as 
     select mv.*, u.nom from v_meilleurVendeur mv
         JOIN Utilisateur u on u.idUtilisateur=mv.idVendeur; 
+
+create or replace view v_AnnonceFavoris as
+  select AnnonceFavoris.*,
+  Annonce.
+  from AnnonceFavoris
+  join Annonce on Annonce.idAnnonce = AnnonceFavoris.idAnnonce

@@ -59,7 +59,7 @@ public class FonctionnaliteTechonologiqueController {
             reponse = new ApiResponse("", entiteService.save(c));
             return ResponseEntity.ok(gson.toJson(reponse));
         }
-        reponse = new ApiResponse("Cette catégorie existe dejà", null);
+        reponse = new ApiResponse("Cette Fonctionnalite existe dejà", null);
         return ResponseEntity.status(500).body(gson.toJson(reponse));
     }
 

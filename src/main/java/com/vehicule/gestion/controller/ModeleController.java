@@ -67,16 +67,11 @@ public class ModeleController {
     @Transactional
     @PostMapping("/modele")
     public ResponseEntity<String> save(@RequestBody Modele c) throws Exception {
-        try {
-            List<Modele> categorie = modeleService.findAllByNomModele(c.getNomModele());
-            // if (c.isNomDeplacated(categorie) == false) {
-            reponse = new ApiResponse("", modeleService.save(c));
-            return ResponseEntity.ok(gson.toJson(reponse));
-            // }
-            // return ResponseEntity.status(500).body("Cette modele existe dejà");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(500).body(e.getMessage());
-        }
+        // List<Modele> categorie = modeleService.findAllByNomModele(c.getNomModele());
+        // if (c.isNomDeplacated(categorie) == false) {
+        reponse = new ApiResponse("", modeleService.save(c));
+        return ResponseEntity.ok(gson.toJson(reponse));
+        // }
+        // return ResponseEntity.status(500).body("Cette modele existe dejà");
     }
 }

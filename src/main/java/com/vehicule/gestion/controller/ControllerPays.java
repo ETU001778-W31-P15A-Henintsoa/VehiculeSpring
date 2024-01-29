@@ -4,18 +4,11 @@ import com.google.gson.Gson;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-<<<<<<< Updated upstream
-// import org.springframework.http.HttpStatus;
-// import org.springframework.http.ResponseEntity;
-// import org.springframework.web.bind.annotation.DeleteMapping;
-=======
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
->>>>>>> Stashed changes
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-// import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -24,72 +17,69 @@ import java.util.Optional;
 import jakarta.transaction.Transactional;
 
 import com.vehicule.gestion.modele.ApiResponse;
-import com.vehicule.gestion.modele.Marque;
-import com.vehicule.gestion.service.ServiceMarque;
+import com.vehicule.gestion.modele.Pays;
+import com.vehicule.gestion.service.ServicePays;
 
 @RestController
-public class ControllerMarque {
+@CrossOrigin(origins = "http://localhost:3000")
+public class ControllerPays {
 
     @Autowired
-    private ServiceMarque servicemarque;
+    private ServicePays servicepays;
     private Gson gson = new Gson();
     private ApiResponse reponse;
 
-    @GetMapping("/marques")
+    @GetMapping("/pays")
     public ResponseEntity<String> findAll() {
         try {
-            List<Marque> lesMarques = servicemarque.findAll();
-            reponse = new ApiResponse("", lesMarques);
+            List<Pays> lesPays = servicepays.findAll();
+            reponse = new ApiResponse("", lesPays);
             return ResponseEntity.ok(gson.toJson(reponse));
         } catch (Exception e) {
+            e.printStackTrace();
             reponse = new ApiResponse(e.getMessage(), null);
             return ResponseEntity.status(500).body(e.getMessage());
         }
     }
 
     @Transactional(rollbackOn = Exception.class)
-<<<<<<< Updated upstream
-    @PostMapping("/marque/{nom_marque}/{pays}")
-    public ResponseEntity<String> save(@PathVariable("nom_marque") String nomMarque,
-            @PathVariable("pays") String pays) {
-=======
-    @PostMapping("/marque")
+    @PostMapping("/pays/{nom_pays}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<String> save(@RequestBody Marque marque) {
->>>>>>> Stashed changes
+    public ResponseEntity<String> save(@PathVariable("nom_pays") String nomMarque) {
         try {
-            Marque marque = new Marque(nomMarque, pays);
-            servicemarque.save(marque);
-            return ResponseEntity.ok("Marque saved successfully.");
+            Pays pays = new Pays(nomMarque);
+            servicepays.save(pays);
+            return ResponseEntity.ok("Pays saved successfully.");
         } catch (Exception e) {
-            // e.printStackTrace();
+            e.printStackTrace();
             reponse = new ApiResponse(e.getMessage(), null);
             return ResponseEntity.status(500).body(gson.toJson(reponse));
         }
 
     }
 
-    @GetMapping("/marques/{id_marque}")
-    public ResponseEntity<String> findById(@PathVariable("id_marque") String id_marque) {
+    @GetMapping("/paysspecifique/{idpays}")
+    public ResponseEntity<String> findById(@PathVariable("idpays") String idPays) {
         try {
-            Optional<Marque> lesMarques = servicemarque.findById(id_marque);;
-            reponse = new ApiResponse("", lesMarques);
+            Optional<Pays> lesMarques = servicepays.findById(idPays);
+            reponse = new ApiResponse("", lesMarques.get());
             return ResponseEntity.ok(gson.toJson(reponse));
         } catch (Exception e) {
+            e.printStackTrace();
             reponse = new ApiResponse(e.getMessage(), null);
             return ResponseEntity.status(500).body(e.getMessage());
         }
     }
 
     @Transactional(rollbackOn = Exception.class)
-    @PostMapping("/marque/{id_marque}")
+    @GetMapping("/suppressionpays/{idpays}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<String> deleteById(@PathVariable("id_marque") String id_marque) {
+    public ResponseEntity<String> deleteById(@PathVariable("idpays") String idpays) {
         try {
-            servicemarque.deleteById(id_marque);
-            return ResponseEntity.ok("Marque id = " + id_marque + " deleted successfully.");
+            servicepays.deleteById(idpays);
+            return ResponseEntity.ok("Marque id = " + idpays + " deleted successfully.");
         } catch (Exception e) {
-            // e.printStackTrace();
+            e.printStackTrace();
             reponse = new ApiResponse(e.getMessage(), null);
             return ResponseEntity.status(500).body(gson.toJson(reponse));
         }

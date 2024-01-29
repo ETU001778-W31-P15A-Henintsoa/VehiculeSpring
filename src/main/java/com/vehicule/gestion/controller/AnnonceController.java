@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,6 +27,10 @@ import com.vehicule.gestion.service.UtilisateurService;
 import jakarta.transaction.Transactional;
 
 @RestController
+<<<<<<< Updated upstream
+=======
+@CrossOrigin(origins = "*")
+>>>>>>> Stashed changes
 @RequestMapping("/annonce")
 public class AnnonceController {
 
@@ -49,6 +54,7 @@ public class AnnonceController {
     }
 
     @PostMapping("/Avalide")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String> valideAnnonce() {
         try {
             List<Annonce> annonce = annonceService.findAllByEtat(0);
@@ -104,4 +110,21 @@ public class AnnonceController {
     public Annonce save(@RequestBody Annonce c)throws Exception{
         return annonceService.save(c);
     }
+<<<<<<< Updated upstream
+=======
+
+    @Transactional
+    @GetMapping("/MAJannonce/{idAnnonce}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<String> update(@PathVariable("idAnnonce") String idAnnonce) throws Exception {
+        try {
+            annonceService.update(idAnnonce, 3);
+            return ResponseEntity.ok("Annonce " + idAnnonce + " validee");
+        } catch (Exception e) {
+            reponse = new ApiResponse(e.getMessage(), null);
+            return ResponseEntity.status(500).body(gson.toJson(reponse));
+        }
+    }
+
+>>>>>>> Stashed changes
 }

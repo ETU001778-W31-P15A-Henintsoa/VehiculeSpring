@@ -2,9 +2,14 @@ package com.vehicule.gestion.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+<<<<<<< Updated upstream
 // import org.springframework.http.HttpStatus;
 // import org.springframework.http.ResponseEntity;
 // import org.springframework.web.bind.annotation.DeleteMapping;
+=======
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
+>>>>>>> Stashed changes
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 // import org.springframework.web.bind.annotation.PathVariable;
@@ -44,8 +49,14 @@ public class ControllerTypeCarburant {
     }
 
     @Transactional(rollbackOn = Exception.class)
+<<<<<<< Updated upstream
     @PostMapping("/typecarburant/{nomTypeCarburant}")
     public ResponseEntity<String> save(@PathVariable("nomTypeCarburant") String nomTypeCarburant) {
+=======
+    @PostMapping("/typecarburant")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<String> save(@RequestBody TypeCarburant type) {
+>>>>>>> Stashed changes
         try {
             TypeCarburant type = new TypeCarburant(nomTypeCarburant);
             servicetypecarburant.save(type);
@@ -70,6 +81,7 @@ public class ControllerTypeCarburant {
         }
     }
 
+<<<<<<< Updated upstream
     // @Transactional(rollbackOn = Exception.class)
     // @PostMapping("/typecarburant/delete/{id}")
     // public ResponseEntity<String> deleteById(@PathVariable("id") String id) {
@@ -82,4 +94,19 @@ public class ControllerTypeCarburant {
     // return ResponseEntity.status(500).body(gson.toJson(reponse));
     // }
     // }
+=======
+    @Transactional(rollbackOn = Exception.class)
+    @PostMapping("/typecarburant/delete/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<String> deleteById(@PathVariable("id") String id) {
+        try {
+            servicetypecarburant.deleteById(id);
+            return ResponseEntity.ok("Marque id = " + id + " deleted successfully.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            reponse = new ApiResponse(e.getMessage(), null);
+            return ResponseEntity.status(500).body(gson.toJson(reponse));
+        }
+    }
+>>>>>>> Stashed changes
 }

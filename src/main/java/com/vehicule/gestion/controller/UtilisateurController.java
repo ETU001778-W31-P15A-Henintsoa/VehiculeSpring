@@ -11,9 +11,16 @@
 // import org.springframework.http.ResponseEntity;
 // import org.springframework.web.bind.annotation.*;
 
+<<<<<<< Updated upstream
 // @RestController
 // @RequestMapping("/initial")
 // public class UtilisateurController {
+=======
+@RestController
+@CrossOrigin(origins = "")
+@RequestMapping("/initial")
+public class UtilisateurController {
+>>>>>>> Stashed changes
 
 //   @Autowired
 //   private AuthenticationService service;

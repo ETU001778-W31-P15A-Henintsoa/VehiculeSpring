@@ -37,11 +37,11 @@ public class ControllerInteret {
             return ResponseEntity.ok(gson.toJson(response));
         } catch (Exception e) {
             response = new ApiResponse(e.getMessage(), null);
-            return ResponseEntity.status(500).body(e.getMessage());
+            return ResponseEntity.status(500).body(gson.toJson(response));
         }
     }
 
-    @GetMapping("/interet")
+    @PostMapping("/interet")
     public ResponseEntity<String> save(@RequestBody Interet interet) {
         try {
             response = new ApiResponse("", entiteService.save(interet));

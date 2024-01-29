@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -52,13 +53,9 @@ public class ControllerMarque {
     }
 
     @Transactional(rollbackOn = Exception.class)
-    @PostMapping("/marque/{nom_marque}/{idpays}")
-    public ResponseEntity<String> save(@PathVariable("nom_marque") String nomMarque,
-            @PathVariable("idpays") String idpays) {
+    @PostMapping("/marque")
+    public ResponseEntity<String> save(@RequestBody Marque marque) {
         try {
-            Pays pays = new Pays();
-            pays.setId(idpays);
-            Marque marque = new Marque(nomMarque, pays);
             servicemarque.save(marque);
             return ResponseEntity.ok("Marque saved successfully.");
         } catch (Exception e) {

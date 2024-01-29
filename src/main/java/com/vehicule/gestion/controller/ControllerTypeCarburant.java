@@ -18,6 +18,8 @@ import com.vehicule.gestion.modele.ApiResponse;
 import com.vehicule.gestion.modele.TypeCarburant;
 import com.vehicule.gestion.service.ServiceTypeCarburant;
 
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 public class ControllerTypeCarburant {
@@ -40,10 +42,9 @@ public class ControllerTypeCarburant {
     }
 
     @Transactional(rollbackOn = Exception.class)
-    @PostMapping("/typecarburant/{nomTypeCarburant}")
-    public ResponseEntity<String> save(@PathVariable("nomTypeCarburant") String nomTypeCarburant) {
+    @PostMapping("/typecarburant")
+    public ResponseEntity<String> save(@RequestBody TypeCarburant type) {
         try {
-            TypeCarburant type = new TypeCarburant(nomTypeCarburant);
             servicetypecarburant.save(type);
             return ResponseEntity.ok("Marque saved successfully.");
         } catch (Exception e) {

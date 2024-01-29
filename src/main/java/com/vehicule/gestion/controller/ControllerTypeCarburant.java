@@ -2,6 +2,7 @@ package com.vehicule.gestion.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +18,10 @@ import com.vehicule.gestion.modele.ApiResponse;
 import com.vehicule.gestion.modele.TypeCarburant;
 import com.vehicule.gestion.service.ServiceTypeCarburant;
 
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class ControllerTypeCarburant {
 
     @Autowired
@@ -38,10 +42,9 @@ public class ControllerTypeCarburant {
     }
 
     @Transactional(rollbackOn = Exception.class)
-    @PostMapping("/typecarburant/{nomTypeCarburant}")
-    public ResponseEntity<String> save(@PathVariable("nomTypeCarburant") String nomTypeCarburant) {
+    @PostMapping("/typecarburant")
+    public ResponseEntity<String> save(@RequestBody TypeCarburant type) {
         try {
-            TypeCarburant type = new TypeCarburant(nomTypeCarburant);
             servicetypecarburant.save(type);
             return ResponseEntity.ok("Marque saved successfully.");
         } catch (Exception e) {

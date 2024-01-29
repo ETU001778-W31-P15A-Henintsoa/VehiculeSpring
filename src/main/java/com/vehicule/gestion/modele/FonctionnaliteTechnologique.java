@@ -15,7 +15,7 @@ import jakarta.persistence.Table;
 public class FonctionnaliteTechnologique {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idfonctionnalite")
+    @Column(name = "idfonctionnalitetechnologique")
     String idFonctionnaliteTechonologique;
     @Column(name = "nomfonctionnalitetechnologique")
     String nomFonctionnaliteTechonologique;

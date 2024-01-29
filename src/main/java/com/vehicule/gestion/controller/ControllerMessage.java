@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +22,7 @@ import com.vehicule.gestion.service.UtilisateurService;
 import com.vehicule.gestion.tools.Role;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 // @RequestMapping("/api/people")
 public class ControllerMessage {
 
@@ -31,56 +33,60 @@ public class ControllerMessage {
     private Gson gson = new Gson();
     private ApiResponse reponse;
 
-    // Insertion Message
-    @PostMapping("message/{idreceveur}/{message}/{files}")
-    public ResponseEntity<String> save(@PathVariable("idreceveur") String receveur,
-            @PathVariable("message") String message, @PathVariable("files") List<MultipartFile> path) {
-        try {
-            // String mailEnvoyeur =
-            // String.valueOf(SecurityContextHolder.getContext().getAuthentication().getName());
+    // // Insertion Message
+    // @PostMapping("message/{idreceveur}/{message}/{files}")
+    // public ResponseEntity<String> save(@PathVariable("idreceveur") String
+    // receveur,
+    // @PathVariable("message") String message, @PathVariable("files")
+    // List<MultipartFile> path) {
+    // try {
+    // // String mailEnvoyeur =
+    // //
+    // String.valueOf(SecurityContextHolder.getContext().getAuthentication().getName());
 
-            // Utilisateur envoyeur = utilisateurService.findByMail(mailEnvoyeur).get();
-            // Utilisateur recepteur = utilisateurService.findById(receveur).get();
-            // List<Utilisateur> listesUtilisateur = utilisateurService.getAll();
-            // servicemail.save(mails);
+    // // Utilisateur envoyeur = utilisateurService.findByMail(mailEnvoyeur).get();
+    // // Utilisateur recepteur = utilisateurService.findById(receveur).get();
+    // // List<Utilisateur> listesUtilisateur = utilisateurService.getAll();
+    // // servicemail.save(mails);
 
-            // Mail mails = new Mail(envoyeur, recepteur, listesUtilisateur);
+    // // Mail mails = new Mail(envoyeur, recepteur, listesUtilisateur);
 
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    // SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-            Message essaie = new Message();
-            essaie.setDateMessage("2024-01-26T12:34:56");
-            essaie.setIdUtilisateurEnvoyeur(new Utilisateur("HERINJANAHARY", "Lova Henintsoa", "GVAS 8 Soamanandrariny",
-                    "h.lovahenintsoa@gmail.com", "password", 0, dateFormat.parse("2004-03-04"),
-                    Role.ROLE_USER));
-            essaie.setIdUtilisateurReceveur(new Utilisateur("Tahinjanahary", "Fiderana",
-                    "Ambohipo",
-                    "fideranatahinjanahary@gmail.com", "motdepasse", 0,
-                    dateFormat.parse("2004-06-14"),
-                    Role.ROLE_USER));
-            essaie.setMessage("coucou aki ahhh.");
+    // Message essaie = new Message();
+    // essaie.setDateMessage("2024-01-26T12:34:56");
+    // essaie.setIdUtilisateurEnvoyeur(new Utilisateur("HERINJANAHARY", "Lova
+    // Henintsoa", "GVAS 8 Soamanandrariny",
+    // "h.lovahenintsoa@gmail.com", "password", 0, dateFormat.parse("2004-03-04"),
+    // Role.ROLE_USER));
+    // essaie.setIdUtilisateurReceveur(new Utilisateur("Tahinjanahary", "Fiderana",
+    // "Ambohipo",
+    // "fideranatahinjanahary@gmail.com", "motdepasse", 0,
+    // dateFormat.parse("2004-06-14"),
+    // Role.ROLE_USER));
+    // essaie.setMessage("coucou aki ahhh.");
 
-            servicemessage.save(essaie);
+    // servicemessage.save(essaie);
 
-            List<Message> lesMails = servicemessage.findAll();
+    // List<Message> lesMails = servicemessage.findAll();
 
-            reponse = new ApiResponse("", lesMails);
+    // reponse = new ApiResponse("", lesMails);
 
-            return ResponseEntity.status(500).body(gson.toJson(reponse));
+    // return ResponseEntity.status(500).body(gson.toJson(reponse));
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            reponse = new ApiResponse(e.getMessage(), null);
-            return ResponseEntity.status(500).body(gson.toJson(reponse));
-        }
-    }
+    // } catch (Exception e) {
+    // e.printStackTrace();
+    // reponse = new ApiResponse(e.getMessage(), null);
+    // return ResponseEntity.status(500).body(gson.toJson(reponse));
+    // }
+    // }
 
-    @GetMapping("/greeting")
-    public ResponseEntity<String> greeting() {
-        return new ResponseEntity<String>(
-                String.valueOf(SecurityContextHolder.getContext().getAuthentication().getName()),
-                HttpStatus.OK);
-    }
+    // @GetMapping("/greeting")
+    // public ResponseEntity<String> greeting() {
+    // return new ResponseEntity<String>(
+    // String.valueOf(SecurityContextHolder.getContext().getAuthentication().getName()),
+    // HttpStatus.OK);
+    // }
 
     // Read operations
     // @GetMapping

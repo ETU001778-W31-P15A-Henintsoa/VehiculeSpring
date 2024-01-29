@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +22,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class ControllerInteret {
     @Autowired
     private InteretService entiteService;
@@ -35,11 +37,11 @@ public class ControllerInteret {
     // return ResponseEntity.ok(gson.toJson(response));
     // } catch (Exception e) {
     // response = new ApiResponse(e.getMessage(), null);
-    // return ResponseEntity.status(500).body(e.getMessage());
+    // return ResponseEntity.status(500).body(gson.toJson(response));
     // }
     // }
 
-    // @GetMapping("/interet/")
+    // @PostMapping("/interet")
     // public ResponseEntity<String> save(@RequestBody Interet interet) {
     // try {
     // response = new ApiResponse("", entiteService.save(interet));

@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.vehicule.gestion.GestionApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 27.02 s -- in com.vehicule.gestion.GestionApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 146.1 s -- in com.vehicule.gestion.GestionApplicationTests

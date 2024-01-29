@@ -117,7 +117,6 @@ public class AnnonceController {
             List<Annonce> annonce = annonceService.rechercheAvance(mapping.getMarque(), mapping.getModele(),
                     mapping.getCategorie(), mapping.getDateMin(), mapping.getDateMax(), mapping.getPrixMin(),
                     mapping.getPrixMax());
-            System.out.println("eto");
             reponse = new ApiResponse("", annonce);
             return ResponseEntity.ok(gson.toJson(reponse));
         } catch (Exception e) {

@@ -1,0 +1,5 @@
+# Created at 2024-01-26T01:30:00.545
+Boot Manifest-JAR contains absolute paths in classpath 'D:\ITU\S5\Mr Rojo\React\VehiculeSpring\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+

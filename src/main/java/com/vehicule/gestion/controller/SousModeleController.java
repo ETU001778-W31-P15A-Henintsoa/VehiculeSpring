@@ -67,11 +67,11 @@ public class SousModeleController {
     @PostMapping("/sousmodele")
     public ResponseEntity<String> save(@RequestBody SousModele c) throws Exception {
         List<SousModele> categorie = entiteService.findAllByNomSous(c.getNomSous());
-        if (c.isNomDuplacated(categorie) == false) {
-            response = new ApiResponse("", entiteService.save(c));
-            return ResponseEntity.ok(gson.toJson(response));
-        }
-        return ResponseEntity.status(500).body("Ce sous modele existe dejà");
+        // if (c.isNomDuplacated(categorie) == false) {
+        response = new ApiResponse("", entiteService.save(c));
+        return ResponseEntity.ok(gson.toJson(response));
+        // }
+        // return ResponseEntity.status(500).body("Ce sous modele existe dejà");
     }
 
 }

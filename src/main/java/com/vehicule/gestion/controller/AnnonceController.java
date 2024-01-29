@@ -129,4 +129,17 @@ public class AnnonceController {
     public Annonce save(@RequestBody Annonce c)throws Exception{
         return annonceService.save(c);
     }
+
+    @Transactional
+    @GetMapping("/MAJannonce/{idAnnonce}")
+    public ResponseEntity<String> update(@PathVariable("idAnnonce") String idAnnonce) throws Exception {
+        try {
+            annonceService.update(idAnnonce, 3);
+            return ResponseEntity.ok("Annonce " + idAnnonce + " validee");
+        } catch (Exception e) {
+            reponse = new ApiResponse(e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(gson.toJson(reponse));
+        }
+    }
+
 }

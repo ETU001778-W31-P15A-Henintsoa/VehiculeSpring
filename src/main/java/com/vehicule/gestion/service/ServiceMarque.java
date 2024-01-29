@@ -24,7 +24,6 @@ public class ServiceMarque {
         return repositoryMarque.save(marque);
     }
 
-    @Transactional
     public Optional<Marque> findById(String id_marque) {
         return repositoryMarque.findById(id_marque);
     }

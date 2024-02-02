@@ -52,19 +52,34 @@ public class SecurityConfig {
           req
               .requestMatchers("/initial/**")
               .permitAll() // Autorise toutes les requêtes correspondant à "/auth/**"
-              .requestMatchers(HttpMethod.GET, "/greeting")
+              .requestMatchers("/greeting")
               .permitAll()
               .requestMatchers("/error/**").permitAll() // Autorise toutes les requêtes correspondant à "/error/**"
-              .requestMatchers(HttpMethod.GET, "/test/hello").permitAll()
+              .requestMatchers("/test/hello").permitAll()
               // for testing without security first
-              .requestMatchers(HttpMethod.GET, "/marques").permitAll()
+              .requestMatchers("/marques/**").permitAll()
               // Annonce
-              .requestMatchers(HttpMethod.GET, "/annonce/**").permitAll()
+              // .requestMatchers("/annonce/Avalide").permitAll()
+              .requestMatchers("/annonce/**").permitAll()
               // --------------------------
-              .requestMatchers(HttpMethod.GET, "/marque").permitAll()
-              .requestMatchers(HttpMethod.GET, "/typecarburants").permitAll()
-              .requestMatchers(HttpMethod.GET, "/fonctionnalite").permitAll()
-              .requestMatchers(HttpMethod.GET, "/categorie").permitAll()
+              .requestMatchers("/marque/**").permitAll()
+              .requestMatchers("/typecarburants/**").permitAll()
+              .requestMatchers("/fonctionnalite/**").permitAll()
+              .requestMatchers("/categories/**").permitAll()
+              .requestMatchers("/categorie/**").permitAll()
+              .requestMatchers("/annoncefavoris/**").permitAll()
+              .requestMatchers("/interet/**").permitAll()
+              .requestMatchers("/message/**").permitAll()
+              .requestMatchers("/pays/**").permitAll()
+              .requestMatchers("/paysspecifique/**").permitAll()
+              .requestMatchers("/suppressionpays/**").permitAll()
+              .requestMatchers("/typecarburant/**").permitAll()
+              .requestMatchers("/kitage/**").permitAll()
+              .requestMatchers("/kitages/**").permitAll()
+              .requestMatchers("/statistique/**").permitAll()
+              .requestMatchers("/modele/**").permitAll()
+              .requestMatchers("/modeles/**").permitAll()
+              .requestMatchers("/modeleByName/**").permitAll()
               .anyRequest()
               .authenticated(); // Exige une authentification pour toutes les autres requêtes
         })

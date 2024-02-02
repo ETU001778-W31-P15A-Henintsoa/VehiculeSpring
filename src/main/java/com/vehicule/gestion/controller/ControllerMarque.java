@@ -36,7 +36,7 @@ public class ControllerMarque {
     // @GetMapping("/marques")
     // public List<Marque> findAll() {
     // List<Marque> lesMarques = servicemarque.findAll();
-    // return lesMarques;
+    // return lesMarques
     // }
 
     @GetMapping("/marques")

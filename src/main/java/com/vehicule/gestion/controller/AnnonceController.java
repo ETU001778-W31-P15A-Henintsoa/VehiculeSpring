@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,6 +52,7 @@ public class AnnonceController {
     }
 
     @PostMapping("/Avalide")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String> valideAnnonce() {
         try {
             List<Annonce> annonce = annonceService.findAllByEtat(0);
@@ -63,6 +65,7 @@ public class AnnonceController {
     }
 
     @GetMapping("/mesListes")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String> avoirMesListes() {
         try {
             String mailUtilisateur = String.valueOf(SecurityContextHolder.getContext().getAuthentication().getName());

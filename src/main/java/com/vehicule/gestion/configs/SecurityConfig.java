@@ -56,6 +56,7 @@ public class SecurityConfig {
               .permitAll()
               .requestMatchers("/error/**").permitAll() // Autorise toutes les requêtes correspondant à "/error/**"
               .requestMatchers(HttpMethod.GET, "/test/hello").permitAll()
+              .requestMatchers("/annonce/Liste").permitAll()
               // for testing without security first
               .requestMatchers(HttpMethod.GET, "/marques").permitAll()
               // Annonce

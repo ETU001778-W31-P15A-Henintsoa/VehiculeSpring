@@ -12,6 +12,7 @@ import com.vehicule.gestion.modele.ApiResponse;
 import com.vehicule.gestion.modele.Categorie;
 import com.vehicule.gestion.modele.Modele;
 import com.vehicule.gestion.service.ModeleService;
+import com.vehicule.gestion.tools.MappingModele;
 
 import jakarta.transaction.Transactional;
 
@@ -73,5 +74,18 @@ public class ModeleController {
         return ResponseEntity.ok(gson.toJson(reponse));
         // }
         // return ResponseEntity.status(500).body("Cette modele existe dejà");
+    }
+
+    @Transactional
+    @PostMapping("/modele/update")
+    public ResponseEntity<String> update(@RequestBody MappingModele c) throws Exception {
+        try {
+            reponse = new ApiResponse("", null);
+            modeleService.update(c.getIdModele(), c.getCategorie(), c.getMarque(), c.getNommodele());
+            return ResponseEntity.ok(gson.toJson(reponse));
+        } catch (Exception e) {
+            reponse = new ApiResponse(e.getMessage(), null);
+            return ResponseEntity.status(500).body(gson.toJson(reponse));
+        }
     }
 }

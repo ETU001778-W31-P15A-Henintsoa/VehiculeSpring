@@ -24,7 +24,15 @@ public class Marque {
     @ManyToOne
     @JoinColumn(name = "pays")
     Pays pays;
+    int etat;
 
+    public void setEtat(int e){
+        this.etat=e;
+    }
+
+    public int getEtat(){
+        return this.etat;
+    }
     public Marque() {
     }
 

@@ -32,4 +32,8 @@ public class ServiceMarque {
         repositoryMarque.deleteById(idmarque);
     }
 
+    public void updateMarque(String pays,String idMarque){
+        repositoryMarque.update(pays, idMarque);
+    }
+
 }

@@ -27,5 +27,9 @@ public class SousModeleService {
     public SousModele save(SousModele c){
         return sousService.save(c);
     }
+
+    public void update(String id,String modele,String nom,float vitesse,float conso,String carbu,boolean manuel,float moteur,float batterie){
+         sousService.update(modele, modele, nom, vitesse, conso, carbu, manuel, moteur, batterie);
+    }
     
 }

@@ -17,6 +17,7 @@ import com.vehicule.gestion.modele.ApiResponse;
 import com.vehicule.gestion.modele.Categorie;
 import com.vehicule.gestion.modele.SousModele;
 import com.vehicule.gestion.service.SousModeleService;
+import com.vehicule.gestion.tools.MappingSousModeleUpdate;
 
 import jakarta.transaction.Transactional;
 
@@ -72,6 +73,29 @@ public class SousModeleController {
         return ResponseEntity.ok(gson.toJson(response));
         // }
         // return ResponseEntity.status(500).body("Ce sous modele existe dejà");
+    }
+
+    @Transactional
+    @PostMapping("/sousmodele/update")
+    public ResponseEntity<String> update(@RequestBody MappingSousModeleUpdate m) throws Exception {
+        try {
+            entiteService.update(m.getId(), m.getModele(), m.getNom(), m.getVitesse(), m.getConso(), m.getCarbu(), m.isManuel(), m.getMoteur(), m.getBatterie());
+            System.out.println(m.getId());
+            System.out.println(m.getModele());
+            System.out.println(m.getNom());
+            System.out.println(m.getVitesse());
+            System.out.println(m.getConso());
+            System.out.println(m.getCarbu());
+            System.out.println(m.isManuel());
+            System.out.println(m.getMoteur());
+            System.out.println(m.getBatterie());
+
+            // if (c.isNomDuplacated(categorie) == false) {
+            response = new ApiResponse("", null);
+            return ResponseEntity.ok(gson.toJson(response));
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
     }
 
 }

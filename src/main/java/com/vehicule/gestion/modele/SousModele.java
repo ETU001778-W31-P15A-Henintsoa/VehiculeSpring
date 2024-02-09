@@ -97,7 +97,7 @@ public class SousModele {
 
     public void setMax(float max) throws Exception{
         if(max<=0){
-            throw new Exception("entrer ube vitesse valide");
+            throw new Exception("entrer une vitesse valide");
         }
         this.vitesseMax = max;
     }   

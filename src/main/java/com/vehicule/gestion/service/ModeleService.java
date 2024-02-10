@@ -27,5 +27,9 @@ public class ModeleService {
     public Modele save(Modele c){
         return modeleRepository.save(c);
     }
+
+    public void update(String idmodele,String categorie,String marque,String nom){
+         modeleRepository.update(categorie,marque,nom,idmodele);
+    }
     
 }
